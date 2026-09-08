@@ -14,12 +14,17 @@ final class TerminalSession: Identifiable {
 
         let view = LocalProcessTerminalView(frame: .zero)
         let shellPath = ProcessInfo.processInfo.environment["SHELL"] ?? "/bin/zsh"
-        let shellName = (shellPath as NSString).lastPathComponent
+
+        // A leading "-" in argv[0] tells the shell it's a login shell, so it
+        // sources /etc/zprofile and ~/.zprofile — which is where Homebrew's
+        // installer puts its PATH setup. Without this, a GUI-launched app's
+        // shell only gets the bare-bones PATH the process inherited at launch.
+        let loginShellName = "-" + (shellPath as NSString).lastPathComponent
 
         var environment = ProcessInfo.processInfo.environment.map { "\($0.key)=\($0.value)" }
         environment.append("TERM=xterm-256color")
 
-        view.startProcess(executable: shellPath, args: [], environment: environment, execName: shellName)
+        view.startProcess(executable: shellPath, args: [], environment: environment, execName: loginShellName)
         terminalView = view
     }
 }
