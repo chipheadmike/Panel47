@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var store = TerminalSessionStore()
+
     var body: some View {
-        LCARSChrome {
-            TerminalView()
-        }
-        .frame(minWidth: 900, minHeight: 600)
+        LCARSChrome(store: store)
+            .frame(minWidth: 900, minHeight: 600)
     }
 }
 

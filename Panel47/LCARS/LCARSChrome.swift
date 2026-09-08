@@ -1,15 +1,15 @@
 import SwiftUI
 
 /// The real window chrome: a swept corner over a button sidebar on the left,
-/// thin title/status bars top and bottom, with arbitrary content (the terminal)
-/// filling the black frame in between.
-struct LCARSChrome<Content: View>: View {
+/// thin title/status bars top and bottom, with the active session(s) filling
+/// the black frame in between.
+struct LCARSChrome: View {
+    @ObservedObject var store: TerminalSessionStore
+
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
     private let elbowHeight: CGFloat = 96
     private let gutter: CGFloat = 4
-
-    @ViewBuilder var content: () -> Content
 
     var body: some View {
         VStack(spacing: 0) {
@@ -23,8 +23,7 @@ struct LCARSChrome<Content: View>: View {
                 VStack(spacing: gutter) {
                     titleBar
 
-                    content()
-                        .background(LCARSColor.background)
+                    terminalArea
                         .frame(maxHeight: .infinity)
 
                     statusBar
@@ -35,15 +34,35 @@ struct LCARSChrome<Content: View>: View {
         .background(LCARSColor.background)
     }
 
+    @ViewBuilder
+    private var terminalArea: some View {
+        if store.isSplit {
+            HStack(spacing: gutter) {
+                TerminalHost(session: store.session(for: store.primaryID))
+                TerminalHost(session: store.session(for: store.secondaryID))
+            }
+            .background(LCARSColor.background)
+        } else {
+            TerminalHost(session: store.session(for: store.primaryID))
+                .background(LCARSColor.background)
+        }
+    }
+
     private var sidebar: some View {
         VStack(spacing: gutter) {
             LCARSElbow(corner: .topLeft, armThickness: barHeight, outerRadius: 64)
                 .fill(LCARSColor.orange)
                 .frame(height: elbowHeight)
 
-            LCARSButton(title: "New Session", color: LCARSColor.orange)
-            LCARSButton(title: "Split Pane", color: LCARSColor.periwinkle)
-            LCARSButton(title: "Settings", color: LCARSColor.lilac)
+            LCARSButton(title: "New Session", color: LCARSColor.orange) {
+                store.newSession()
+            }
+            LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
+                store.toggleSplit()
+            }
+            LCARSButton(title: "Settings", color: LCARSColor.lilac) {}
+
+            sessionList
 
             Spacer(minLength: 8)
 
@@ -55,6 +74,27 @@ struct LCARSChrome<Content: View>: View {
                 .fill(LCARSColor.peach)
                 .frame(height: elbowHeight)
         }
+    }
+
+    private var sessionList: some View {
+        ScrollView {
+            VStack(spacing: gutter) {
+                ForEach(store.sessions) { session in
+                    LCARSButton(
+                        title: session.title,
+                        color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue
+                    ) {
+                        store.select(session.id)
+                    }
+                    .contextMenu {
+                        Button("Close Session", role: .destructive) {
+                            store.close(session.id)
+                        }
+                    }
+                }
+            }
+        }
+        .frame(maxHeight: 220)
     }
 
     private var titleBar: some View {
