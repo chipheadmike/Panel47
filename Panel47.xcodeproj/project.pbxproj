@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */; };
+		063C0B2B761FCC3FC2DD37D8 /* ToolDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */; };
 		0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */; };
 		142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A4967AA40294DB773E23E /* LCARSButton.swift */; };
 		1BBF1827E829E54D21074BD7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = C25482A6C6139E243606CA6E /* Fonts */; };
 		1C090984035B4E20110E05DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFE4D4395048B6D414DEE3A /* ContentView.swift */; };
+		2AF6237B5BDEC3A3CCD6108A /* CommandModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27280187733034153C67B9 /* CommandModule.swift */; };
 		319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A30160B328D0B86A058A5 /* Assets.xcassets */; };
+		353D245BC04797ECAC3DBDD1 /* LCARSCommandModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC676346A8F2BB2486C0C8F /* LCARSCommandModuleButton.swift */; };
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
 		3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */; };
 		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
@@ -62,11 +65,14 @@
 		924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47Tests.swift; sourceTree = "<group>"; };
 		9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSVibrancyBackground.swift; sourceTree = "<group>"; };
 		98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStyleGuide.swift; sourceTree = "<group>"; };
+		9EC676346A8F2BB2486C0C8F /* LCARSCommandModuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommandModuleButton.swift; sourceTree = "<group>"; };
 		9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSElbow.swift; sourceTree = "<group>"; };
 		A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSReadout.swift; sourceTree = "<group>"; };
 		AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionStoreTests.swift; sourceTree = "<group>"; };
+		BD27280187733034153C67B9 /* CommandModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandModule.swift; sourceTree = "<group>"; };
 		BE94A29C12FE117A8A63DA04 /* Panel47App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47App.swift; sourceTree = "<group>"; };
 		C25482A6C6139E243606CA6E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Panel47/Fonts; sourceTree = SOURCE_ROOT; };
+		C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolDetectorTests.swift; sourceTree = "<group>"; };
 		CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47UITests.swift; sourceTree = "<group>"; };
 		D8280183F82B774991830D87 /* Panel47Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSColor.swift; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 				8B0A4967AA40294DB773E23E /* LCARSButton.swift */,
 				70C1B6F33FBED3613F6E5D90 /* LCARSChrome.swift */,
 				DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */,
+				9EC676346A8F2BB2486C0C8F /* LCARSCommandModuleButton.swift */,
 				9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */,
 				89980613A78EF284BEF34C32 /* LCARSFont.swift */,
 				A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */,
@@ -132,6 +139,7 @@
 			children = (
 				00BFB3BA3AC2243DEC0A43A4 /* AppSettings.swift */,
 				DE9A30160B328D0B86A058A5 /* Assets.xcassets */,
+				BD27280187733034153C67B9 /* CommandModule.swift */,
 				EDFE4D4395048B6D414DEE3A /* ContentView.swift */,
 				105BC816CE8C5A745879871D /* Info.plist */,
 				1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */,
@@ -158,6 +166,7 @@
 				E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */,
+				C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */,
 			);
 			path = Panel47Tests;
 			sourceTree = "<group>";
@@ -289,6 +298,7 @@
 				390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				73C6E8B4E0260BEE285C9B9D /* TerminalSessionStoreTests.swift in Sources */,
+				063C0B2B761FCC3FC2DD37D8 /* ToolDetectorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,10 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				55681F16F98A790D33DD0A61 /* AppSettings.swift in Sources */,
+				2AF6237B5BDEC3A3CCD6108A /* CommandModule.swift in Sources */,
 				1C090984035B4E20110E05DF /* ContentView.swift in Sources */,
 				142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */,
 				D90D046EC52E3CDBB0E17AD1 /* LCARSChrome.swift in Sources */,
 				C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */,
+				353D245BC04797ECAC3DBDD1 /* LCARSCommandModuleButton.swift in Sources */,
 				48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */,
 				FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */,
 				3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */,

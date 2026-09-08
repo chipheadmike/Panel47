@@ -74,6 +74,13 @@ final class TerminalSessionStore: ObservableObject {
         return sessions.first { $0.id == id }
     }
 
+    /// Types a command into the primary session's shell, as if the user had
+    /// typed it themselves and pressed Return — this runs for real, in the
+    /// visible terminal, not in some hidden process.
+    func sendCommand(_ command: String) {
+        session(for: primaryID)?.terminalView.send(txt: command + "\n")
+    }
+
     @discardableResult
     private func addSession() -> TerminalSession {
         let session = TerminalSession(number: nextNumber, settings: settings)

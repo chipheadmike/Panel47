@@ -12,6 +12,7 @@ struct LCARSChrome: View {
     private let barHeight: CGFloat = 36
     private let elbowHeight: CGFloat = 96
     private let gutter: CGFloat = 4
+    private let commandModules = ToolDetector.detectAll()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -72,6 +73,13 @@ struct LCARSChrome: View {
             LCARSButton(title: "Settings", color: LCARSColor.lilac) {
                 playBlip()
                 showingSettings = true
+            }
+
+            ForEach(commandModules) { module in
+                LCARSCommandModuleButton(module: module, color: LCARSColor.peach) { action in
+                    playBlip()
+                    store.sendCommand(action.command)
+                }
             }
 
             sessionList
