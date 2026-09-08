@@ -36,6 +36,8 @@ final class AppSettings: ObservableObject {
     @Published var colorScheme: TerminalColorScheme { didSet { defaults.set(colorScheme.rawValue, forKey: Keys.colorScheme) } }
     @Published var customShellPath: String { didSet { defaults.set(customShellPath, forKey: Keys.customShellPath) } }
     @Published var workingDirectory: String { didSet { defaults.set(workingDirectory, forKey: Keys.workingDirectory) } }
+    /// Off by default — a terminal that beeps at you unprompted is a menace.
+    @Published var soundEffectsEnabled: Bool { didSet { defaults.set(soundEffectsEnabled, forKey: Keys.soundEffectsEnabled) } }
 
     private let defaults: UserDefaults
 
@@ -44,6 +46,7 @@ final class AppSettings: ObservableObject {
         static let colorScheme = "Panel47.colorScheme"
         static let customShellPath = "Panel47.customShellPath"
         static let workingDirectory = "Panel47.workingDirectory"
+        static let soundEffectsEnabled = "Panel47.soundEffectsEnabled"
     }
 
     init(defaults: UserDefaults = .standard) {
@@ -52,5 +55,6 @@ final class AppSettings: ObservableObject {
         colorScheme = TerminalColorScheme(rawValue: defaults.string(forKey: Keys.colorScheme) ?? "") ?? .classic
         customShellPath = defaults.string(forKey: Keys.customShellPath) ?? ""
         workingDirectory = defaults.string(forKey: Keys.workingDirectory) ?? ""
+        soundEffectsEnabled = defaults.object(forKey: Keys.soundEffectsEnabled) as? Bool ?? false
     }
 }

@@ -13,6 +13,7 @@ struct AppSettingsTests {
         #expect(settings.colorScheme == .classic)
         #expect(settings.customShellPath == "")
         #expect(settings.workingDirectory == "")
+        #expect(settings.soundEffectsEnabled == false) // a terminal that beeps unprompted is a menace
     }
 
     @Test func persistsAcrossInstancesSharingTheSameDefaults() {
@@ -22,12 +23,14 @@ struct AppSettingsTests {
         first.colorScheme = .amber
         first.customShellPath = "/bin/bash"
         first.workingDirectory = "/tmp"
+        first.soundEffectsEnabled = true
 
         let second = AppSettings(defaults: defaults)
         #expect(second.fontSize == 18)
         #expect(second.colorScheme == .amber)
         #expect(second.customShellPath == "/bin/bash")
         #expect(second.workingDirectory == "/tmp")
+        #expect(second.soundEffectsEnabled == true)
     }
 
     @Test func separateDefaultsSuitesDoNotLeakIntoEachOther() {

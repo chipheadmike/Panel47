@@ -19,6 +19,6 @@ struct LCARSButton: View {
                 .padding(.vertical, 10)
         }
         .buttonStyle(.plain)
-        .background(Capsule().fill(color))
+        .background(Capsule().fill(LCARSColor.gloss(color)))
     }
 }

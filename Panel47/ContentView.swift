@@ -12,7 +12,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        LCARSChrome(store: store, showingSettings: $showingSettings)
+        LCARSChrome(store: store, settings: settings, showingSettings: $showingSettings)
             .frame(minWidth: 900, minHeight: 600)
             .sheet(isPresented: $showingSettings) {
                 SettingsView(settings: settings)

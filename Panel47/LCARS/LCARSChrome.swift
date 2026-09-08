@@ -5,6 +5,7 @@ import SwiftUI
 /// the black frame in between.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
+    @ObservedObject var settings: AppSettings
     @Binding var showingSettings: Bool
 
     private let sidebarWidth: CGFloat = 180
@@ -32,7 +33,12 @@ struct LCARSChrome: View {
             }
         }
         .padding(gutter)
-        .background(LCARSColor.background)
+        .background(
+            ZStack {
+                LCARSVibrancyBackground()
+                LCARSColor.background.opacity(0.92)
+            }
+        )
     }
 
     @ViewBuilder
@@ -52,16 +58,19 @@ struct LCARSChrome: View {
     private var sidebar: some View {
         VStack(spacing: gutter) {
             LCARSElbow(corner: .topLeft, armThickness: barHeight, outerRadius: 64)
-                .fill(LCARSColor.orange)
+                .fill(LCARSColor.gloss(LCARSColor.orange))
                 .frame(height: elbowHeight)
 
             LCARSButton(title: "New Session", color: LCARSColor.orange) {
+                playBlip()
                 store.newSession()
             }
             LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
+                playBlip()
                 store.toggleSplit()
             }
             LCARSButton(title: "Settings", color: LCARSColor.lilac) {
+                playBlip()
                 showingSettings = true
             }
 
@@ -74,7 +83,7 @@ struct LCARSChrome: View {
                 .foregroundStyle(LCARSColor.textOnBlack)
 
             LCARSElbow(corner: .bottomLeft, armThickness: barHeight, outerRadius: 64)
-                .fill(LCARSColor.peach)
+                .fill(LCARSColor.gloss(LCARSColor.peach))
                 .frame(height: elbowHeight)
         }
     }
@@ -87,6 +96,7 @@ struct LCARSChrome: View {
                         title: session.title,
                         color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue
                     ) {
+                        playBlip()
                         store.select(session.id)
                     }
                     .contextMenu {
@@ -102,7 +112,7 @@ struct LCARSChrome: View {
 
     private var titleBar: some View {
         UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: barHeight / 2)
-            .fill(LCARSColor.orange)
+            .fill(LCARSColor.gloss(LCARSColor.orange))
             .frame(height: barHeight)
             .overlay(alignment: .trailing) {
                 Text("PANEL 47 \u{00B7} TERMINAL")
@@ -115,7 +125,17 @@ struct LCARSChrome: View {
 
     private var statusBar: some View {
         UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 0, bottomTrailingRadius: barHeight / 2, topTrailingRadius: 0)
-            .fill(LCARSColor.peach)
+            .fill(LCARSColor.gloss(LCARSColor.peach))
             .frame(height: barHeight)
+            .overlay(alignment: .leading) {
+                LCARSReadout()
+                    .padding(.leading, 20)
+            }
+    }
+
+    private func playBlip() {
+        if settings.soundEffectsEnabled {
+            LCARSSoundPlayer.shared.playBlip()
+        }
     }
 }

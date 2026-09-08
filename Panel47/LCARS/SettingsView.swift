@@ -48,6 +48,25 @@ struct SettingsView: View {
                 }
             }
 
+            section("UI SOUNDS") {
+                HStack(spacing: 8) {
+                    LCARSButton(
+                        title: "On",
+                        color: settings.soundEffectsEnabled ? LCARSColor.paleCanary : LCARSColor.iceBlue,
+                        alignment: .center
+                    ) {
+                        settings.soundEffectsEnabled = true
+                    }
+                    LCARSButton(
+                        title: "Off",
+                        color: !settings.soundEffectsEnabled ? LCARSColor.paleCanary : LCARSColor.iceBlue,
+                        alignment: .center
+                    ) {
+                        settings.soundEffectsEnabled = false
+                    }
+                }
+            }
+
             Spacer()
 
             HStack {
@@ -59,7 +78,7 @@ struct SettingsView: View {
             }
         }
         .padding(28)
-        .frame(width: 480, height: 480)
+        .frame(width: 480, height: 560)
         .background(LCARSColor.background)
     }
 

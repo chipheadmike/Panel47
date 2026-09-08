@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 /// The classic LCARS palette — flat, high-saturation blocks on black.
@@ -14,6 +15,12 @@ enum LCARSColor {
 
     /// Body/label text on black is orange in the classic scheme.
     static let textOnBlack = orange
+
+    /// A subtle top-lit gloss for panels — real sci-fi console faces catch a
+    /// highlight rather than reading as perfectly flat paint swatches.
+    static func gloss(_ base: Color) -> LinearGradient {
+        LinearGradient(colors: [base.lightened(by: 0.22), base], startPoint: .top, endPoint: .bottom)
+    }
 }
 
 extension Color {
@@ -22,5 +29,11 @@ extension Color {
         let g = Double((hex >> 8) & 0xFF) / 255
         let b = Double(hex & 0xFF) / 255
         self.init(red: r, green: g, blue: b)
+    }
+
+    /// Blends toward white by `fraction` (0...1).
+    func lightened(by fraction: CGFloat) -> Color {
+        let ns = NSColor(self).usingColorSpace(.deviceRGB) ?? NSColor(self)
+        return Color(ns.blended(withFraction: fraction, of: .white) ?? ns)
     }
 }
