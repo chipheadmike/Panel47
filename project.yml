@@ -20,6 +20,11 @@ targets:
     platform: macOS
     sources:
       - path: Panel47
+        excludes:
+          - "Fonts/**"
+      - path: Panel47/Fonts
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.chataeubacon.app.Panel47
@@ -27,6 +32,10 @@ targets:
         ENABLE_HARDENED_RUNTIME: YES
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
+    info:
+      path: Panel47/Info.plist
+      properties:
+        ATSApplicationFontsPath: Fonts
     dependencies:
       - package: SwiftTerm
 

@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */; };
 		0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */; };
+		142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A4967AA40294DB773E23E /* LCARSButton.swift */; };
+		1BBF1827E829E54D21074BD7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = C25482A6C6139E243606CA6E /* Fonts */; };
 		1C090984035B4E20110E05DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFE4D4395048B6D414DEE3A /* ContentView.swift */; };
+		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
 		54B05E6C5CE96CADBDC738D1 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 15E4596D80CABA3471E062F9 /* SwiftTerm */; };
 		57E37DE6E02773521AEEAFD2 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166C350D83FEED518741784 /* TerminalView.swift */; };
 		75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94A29C12FE117A8A63DA04 /* Panel47App.swift */; };
 		C20B74A29FB9BB9A9BC7DD52 /* Panel47UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */; };
+		C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */; };
+		FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89980613A78EF284BEF34C32 /* LCARSFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,12 +39,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		105BC816CE8C5A745879871D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6809E136A01F3EC6B97D467B /* Panel47UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89980613A78EF284BEF34C32 /* LCARSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSFont.swift; sourceTree = "<group>"; };
+		8B0A4967AA40294DB773E23E /* LCARSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSButton.swift; sourceTree = "<group>"; };
 		924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47Tests.swift; sourceTree = "<group>"; };
+		98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStyleGuide.swift; sourceTree = "<group>"; };
+		9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSElbow.swift; sourceTree = "<group>"; };
 		B166C350D83FEED518741784 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
 		BE94A29C12FE117A8A63DA04 /* Panel47App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47App.swift; sourceTree = "<group>"; };
+		C25482A6C6139E243606CA6E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Panel47/Fonts; sourceTree = SOURCE_ROOT; };
 		CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47UITests.swift; sourceTree = "<group>"; };
 		D8280183F82B774991830D87 /* Panel47Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSColor.swift; sourceTree = "<group>"; };
 		E4B12799831BF11E52ED192C /* Panel47.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panel47.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDFE4D4395048B6D414DEE3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +81,7 @@
 		4C323865BE1E075AF93FEA97 = {
 			isa = PBXGroup;
 			children = (
+				C25482A6C6139E243606CA6E /* Fonts */,
 				98ED7373D1D1B88BEA6FCCE8 /* Panel47 */,
 				EFEB3B647B6CE6BCC131D4F9 /* Panel47Tests */,
 				B5306474B3A8E2AA176FFEFF /* Panel47UITests */,
@@ -75,12 +89,26 @@
 			);
 			sourceTree = "<group>";
 		};
+		7CB7D2BBD77F3C01068B2B15 /* LCARS */ = {
+			isa = PBXGroup;
+			children = (
+				8B0A4967AA40294DB773E23E /* LCARSButton.swift */,
+				DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */,
+				9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */,
+				89980613A78EF284BEF34C32 /* LCARSFont.swift */,
+				98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */,
+			);
+			path = LCARS;
+			sourceTree = "<group>";
+		};
 		98ED7373D1D1B88BEA6FCCE8 /* Panel47 */ = {
 			isa = PBXGroup;
 			children = (
 				EDFE4D4395048B6D414DEE3A /* ContentView.swift */,
+				105BC816CE8C5A745879871D /* Info.plist */,
 				BE94A29C12FE117A8A63DA04 /* Panel47App.swift */,
 				B166C350D83FEED518741784 /* TerminalView.swift */,
+				7CB7D2BBD77F3C01068B2B15 /* LCARS */,
 			);
 			path = Panel47;
 			sourceTree = "<group>";
@@ -127,6 +155,7 @@
 			buildConfigurationList = ED23AE182C8AA7798F0D587C /* Build configuration list for PBXNativeTarget "Panel47" */;
 			buildPhases = (
 				4A47D1954ED211D192A44A37 /* Sources */,
+				266359FF687C5031418F2C06 /* Resources */,
 				819152D21DC37B62933E6424 /* Frameworks */,
 			);
 			buildRules = (
@@ -207,6 +236,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		266359FF687C5031418F2C06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BBF1827E829E54D21074BD7 /* Fonts in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1B8C4729714585C5CBEFE85F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -221,6 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C090984035B4E20110E05DF /* ContentView.swift in Sources */,
+				142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */,
+				C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */,
+				48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */,
+				FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */,
+				0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */,
 				75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */,
 				57E37DE6E02773521AEEAFD2 /* TerminalView.swift in Sources */,
 			);
@@ -275,6 +320,7 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Panel47/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -471,6 +517,7 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Panel47/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
