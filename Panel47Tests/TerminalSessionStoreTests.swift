@@ -1,24 +1,31 @@
+import Foundation
 import Testing
 @testable import Panel47
 
 @MainActor
 struct TerminalSessionStoreTests {
+    private func makeStore() -> TerminalSessionStore {
+        let suiteName = "Panel47Tests.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        return TerminalSessionStore(settings: AppSettings(defaults: defaults))
+    }
+
     @Test func startsWithOneSessionSelected() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         #expect(store.sessions.count == 1)
         #expect(store.primaryID == store.sessions.first?.id)
         #expect(store.isSplit == false)
     }
 
     @Test func newSessionIsAddedAndSelected() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         let second = store.newSession()
         #expect(store.sessions.count == 2)
         #expect(store.primaryID == second.id)
     }
 
     @Test func toggleSplitPicksADifferentSecondarySession() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         let first = store.primaryID
 
         store.toggleSplit()
@@ -36,7 +43,7 @@ struct TerminalSessionStoreTests {
     }
 
     @Test func closingPrimaryFallsBackToAnotherSession() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         let first = store.primaryID!
         let second = store.newSession()
 
@@ -47,7 +54,7 @@ struct TerminalSessionStoreTests {
     }
 
     @Test func closingLastSessionAlwaysLeavesOneBehind() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         let only = store.primaryID!
 
         store.close(only)
@@ -58,7 +65,7 @@ struct TerminalSessionStoreTests {
     }
 
     @Test func closingSecondaryEndsSplit() {
-        let store = TerminalSessionStore()
+        let store = makeStore()
         store.toggleSplit()
         let secondary = store.secondaryID!
 

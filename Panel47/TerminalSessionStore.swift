@@ -9,10 +9,21 @@ final class TerminalSessionStore: ObservableObject {
     @Published var secondaryID: TerminalSession.ID?
     @Published private(set) var isSplit = false
 
+    private let settings: AppSettings
+    private var cancellables = Set<AnyCancellable>()
     private var nextNumber = 1
 
-    init() {
+    init(settings: AppSettings) {
+        self.settings = settings
         newSession()
+
+        settings.$fontSize
+            .combineLatest(settings.$colorScheme)
+            .dropFirst() // skip the replay of the values already applied at each session's creation
+            .sink { [weak self] fontSize, colorScheme in
+                self?.sessions.forEach { $0.applyAppearance(fontSize: fontSize, colorScheme: colorScheme) }
+            }
+            .store(in: &cancellables)
     }
 
     @discardableResult
@@ -32,14 +43,6 @@ final class TerminalSessionStore: ObservableObject {
         let other = sessions.first(where: { $0.id != primaryID }) ?? addSession()
         secondaryID = other.id
         isSplit = true
-    }
-
-    @discardableResult
-    private func addSession() -> TerminalSession {
-        let session = TerminalSession(number: nextNumber)
-        nextNumber += 1
-        sessions.append(session)
-        return session
     }
 
     func select(_ id: TerminalSession.ID) {
@@ -69,5 +72,13 @@ final class TerminalSessionStore: ObservableObject {
     func session(for id: TerminalSession.ID?) -> TerminalSession? {
         guard let id else { return nil }
         return sessions.first { $0.id == id }
+    }
+
+    @discardableResult
+    private func addSession() -> TerminalSession {
+        let session = TerminalSession(number: nextNumber, settings: settings)
+        nextNumber += 1
+        sessions.append(session)
+        return session
     }
 }

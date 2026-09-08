@@ -5,6 +5,7 @@ import SwiftUI
 /// the black frame in between.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
+    @Binding var showingSettings: Bool
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -60,7 +61,9 @@ struct LCARSChrome: View {
             LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
                 store.toggleSplit()
             }
-            LCARSButton(title: "Settings", color: LCARSColor.lilac) {}
+            LCARSButton(title: "Settings", color: LCARSColor.lilac) {
+                showingSettings = true
+            }
 
             sessionList
 
