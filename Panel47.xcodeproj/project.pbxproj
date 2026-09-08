@@ -12,6 +12,7 @@
 		142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A4967AA40294DB773E23E /* LCARSButton.swift */; };
 		1BBF1827E829E54D21074BD7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = C25482A6C6139E243606CA6E /* Fonts */; };
 		1C090984035B4E20110E05DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFE4D4395048B6D414DEE3A /* ContentView.swift */; };
+		319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A30160B328D0B86A058A5 /* Assets.xcassets */; };
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
 		3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */; };
 		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
@@ -69,6 +70,7 @@
 		CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47UITests.swift; sourceTree = "<group>"; };
 		D8280183F82B774991830D87 /* Panel47Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSColor.swift; sourceTree = "<group>"; };
+		DE9A30160B328D0B86A058A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E04E940B6323ECF43034C8B8 /* TerminalHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalHost.swift; sourceTree = "<group>"; };
 		E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTests.swift; sourceTree = "<group>"; };
 		E1323372F45E25A07CE726E6 /* TerminalSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionStore.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				00BFB3BA3AC2243DEC0A43A4 /* AppSettings.swift */,
+				DE9A30160B328D0B86A058A5 /* Assets.xcassets */,
 				EDFE4D4395048B6D414DEE3A /* ContentView.swift */,
 				105BC816CE8C5A745879871D /* Info.plist */,
 				1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */,
@@ -271,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */,
 				1BBF1827E829E54D21074BD7 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
