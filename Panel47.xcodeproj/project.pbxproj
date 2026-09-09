@@ -21,15 +21,18 @@
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
 		3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */; };
 		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
+		5190171854E308765937FBC4 /* StardateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DAEB56F89259B528C5D29 /* StardateTests.swift */; };
 		54B05E6C5CE96CADBDC738D1 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 15E4596D80CABA3471E062F9 /* SwiftTerm */; };
 		55681F16F98A790D33DD0A61 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BFB3BA3AC2243DEC0A43A4 /* AppSettings.swift */; };
 		5BEC0CC31217E76F53EDAF9A /* TerminalSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1323372F45E25A07CE726E6 /* TerminalSessionStore.swift */; };
 		73C6E8B4E0260BEE285C9B9D /* TerminalSessionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */; };
 		75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94A29C12FE117A8A63DA04 /* Panel47App.swift */; };
+		7FDC8FD25A3A8D51573903E9 /* LCARSStardateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */; };
 		8EE9874FC662F4335735C0BF /* LCARSVibrancyBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */; };
 		9DFDD5C3556CEA45A52A3DE4 /* LCARSCommandModulePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E795C80B4CF06638EEB7D /* LCARSCommandModulePanel.swift */; };
 		A67B5323DEEBCD4BFB8FEAB8 /* TerminalHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E940B6323ECF43034C8B8 /* TerminalHost.swift */; };
 		AFBA57173D2FEEA81B138C75 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F9201DE1131D9F55FBFA1A /* SettingsView.swift */; };
+		C1941A9AAD64FE56A9DDCF0D /* Stardate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */; };
 		C20B74A29FB9BB9A9BC7DD52 /* Panel47UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */; };
 		C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */; };
 		CC1043E6B546DCBBFFF8E3F0 /* TerminalSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85BE2D2151610DE5F48AC3 /* TerminalSession.swift */; };
@@ -72,10 +75,13 @@
 		97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommandRunner.swift; sourceTree = "<group>"; };
 		98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStyleGuide.swift; sourceTree = "<group>"; };
 		9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSElbow.swift; sourceTree = "<group>"; };
+		A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStardateView.swift; sourceTree = "<group>"; };
 		A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSReadout.swift; sourceTree = "<group>"; };
 		AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionStoreTests.swift; sourceTree = "<group>"; };
+		B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stardate.swift; sourceTree = "<group>"; };
 		BD27280187733034153C67B9 /* CommandModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandModule.swift; sourceTree = "<group>"; };
 		BE94A29C12FE117A8A63DA04 /* Panel47App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47App.swift; sourceTree = "<group>"; };
+		BF7DAEB56F89259B528C5D29 /* StardateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StardateTests.swift; sourceTree = "<group>"; };
 		C25482A6C6139E243606CA6E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Panel47/Fonts; sourceTree = SOURCE_ROOT; };
 		C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolDetectorTests.swift; sourceTree = "<group>"; };
 		CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47UITests.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */,
 				89980613A78EF284BEF34C32 /* LCARSFont.swift */,
 				A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */,
+				A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */,
 				98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */,
 				9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */,
 				19F9201DE1131D9F55FBFA1A /* SettingsView.swift */,
@@ -152,6 +159,7 @@
 				1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */,
 				BE94A29C12FE117A8A63DA04 /* Panel47App.swift */,
 				97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */,
+				B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */,
 				E04E940B6323ECF43034C8B8 /* TerminalHost.swift */,
 				3B85BE2D2151610DE5F48AC3 /* TerminalSession.swift */,
 				E1323372F45E25A07CE726E6 /* TerminalSessionStore.swift */,
@@ -174,6 +182,7 @@
 				E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */,
+				BF7DAEB56F89259B528C5D29 /* StardateTests.swift */,
 				AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */,
 				C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */,
 			);
@@ -307,6 +316,7 @@
 				390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				0DEADC4A5FA5939BB5B3D65D /* ShellCommandRunnerTests.swift in Sources */,
+				5190171854E308765937FBC4 /* StardateTests.swift in Sources */,
 				73C6E8B4E0260BEE285C9B9D /* TerminalSessionStoreTests.swift in Sources */,
 				063C0B2B761FCC3FC2DD37D8 /* ToolDetectorTests.swift in Sources */,
 			);
@@ -328,11 +338,13 @@
 				FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */,
 				3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */,
 				D1B0636310F277D5A8FAEBD3 /* LCARSSoundPlayer.swift in Sources */,
+				7FDC8FD25A3A8D51573903E9 /* LCARSStardateView.swift in Sources */,
 				0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */,
 				8EE9874FC662F4335735C0BF /* LCARSVibrancyBackground.swift in Sources */,
 				75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */,
 				AFBA57173D2FEEA81B138C75 /* SettingsView.swift in Sources */,
 				27A18229475F54A174EFC650 /* ShellCommandRunner.swift in Sources */,
+				C1941A9AAD64FE56A9DDCF0D /* Stardate.swift in Sources */,
 				A67B5323DEEBCD4BFB8FEAB8 /* TerminalHost.swift in Sources */,
 				CC1043E6B546DCBBFFF8E3F0 /* TerminalSession.swift in Sources */,
 				5BEC0CC31217E76F53EDAF9A /* TerminalSessionStore.swift in Sources */,

@@ -115,6 +115,8 @@ struct LCARSChrome: View {
                 .font(LCARSFont.antonio(22, weight: 700))
                 .foregroundStyle(LCARSColor.textOnBlack)
 
+            LCARSStardateView()
+
             LCARSElbow(corner: .bottomLeft, armThickness: barHeight, outerRadius: 64)
                 .fill(LCARSColor.gloss(LCARSColor.peach))
                 .frame(height: elbowHeight)
