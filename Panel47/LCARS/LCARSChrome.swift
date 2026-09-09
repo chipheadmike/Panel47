@@ -2,13 +2,16 @@ import SwiftUI
 
 /// The real window chrome: a swept corner over a button sidebar on the left,
 /// thin title/status bars top and bottom, with the active session(s) — or a
-/// command module's actions — filling the black frame in between.
+/// command module's actions, or a command's running output — filling the
+/// black frame in between.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
     @ObservedObject var settings: AppSettings
     @Binding var showingSettings: Bool
 
     @State private var activeModule: CommandModule?
+    @State private var runningAction: CommandAction?
+    @StateObject private var commandRunner = ShellCommandRunner()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -46,11 +49,17 @@ struct LCARSChrome: View {
 
     @ViewBuilder
     private var contentArea: some View {
-        if let module = activeModule {
+        if let module = activeModule, let action = runningAction {
+            LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
+                runningAction = nil
+            } onRunAgain: {
+                commandRunner.run(action.command)
+            }
+        } else if let module = activeModule {
             LCARSCommandModulePanel(module: module) { action in
                 playBlip()
-                store.sendCommand(action.command)
-                activeModule = nil // back to the terminal so the output is visible
+                runningAction = action
+                commandRunner.run(action.command)
             }
         } else if store.isSplit {
             HStack(spacing: gutter) {
@@ -73,11 +82,13 @@ struct LCARSChrome: View {
             LCARSButton(title: "New Session", color: LCARSColor.orange) {
                 playBlip()
                 activeModule = nil
+                runningAction = nil
                 store.newSession()
             }
             LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
                 playBlip()
                 activeModule = nil
+                runningAction = nil
                 store.toggleSplit()
             }
             LCARSButton(title: "Settings", color: LCARSColor.lilac) {
@@ -91,6 +102,7 @@ struct LCARSChrome: View {
                     color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
                 ) {
                     playBlip()
+                    runningAction = nil
                     activeModule = (activeModule?.id == module.id) ? nil : module
                 }
             }
@@ -119,6 +131,7 @@ struct LCARSChrome: View {
                     ) {
                         playBlip()
                         activeModule = nil
+                        runningAction = nil
                         store.select(session.id)
                     }
                     .contextMenu {
@@ -137,12 +150,22 @@ struct LCARSChrome: View {
             .fill(LCARSColor.gloss(LCARSColor.orange))
             .frame(height: barHeight)
             .overlay(alignment: .trailing) {
-                Text("PANEL 47 \u{00B7} \(activeModule?.name.uppercased() ?? "TERMINAL")")
+                Text("PANEL 47 \u{00B7} \(titleBarLabel)")
                     .font(LCARSFont.antonio(18, weight: 700))
                     .tracking(1)
                     .foregroundStyle(.black)
                     .padding(.trailing, 24)
             }
+    }
+
+    private var titleBarLabel: String {
+        if let module = activeModule, let action = runningAction {
+            return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
+        } else if let module = activeModule {
+            return module.name.uppercased()
+        } else {
+            return "TERMINAL"
+        }
     }
 
     private var statusBar: some View {
