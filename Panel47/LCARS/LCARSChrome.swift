@@ -1,12 +1,14 @@
 import SwiftUI
 
 /// The real window chrome: a swept corner over a button sidebar on the left,
-/// thin title/status bars top and bottom, with the active session(s) filling
-/// the black frame in between.
+/// thin title/status bars top and bottom, with the active session(s) — or a
+/// command module's actions — filling the black frame in between.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
     @ObservedObject var settings: AppSettings
     @Binding var showingSettings: Bool
+
+    @State private var activeModule: CommandModule?
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -26,7 +28,7 @@ struct LCARSChrome: View {
                 VStack(spacing: gutter) {
                     titleBar
 
-                    terminalArea
+                    contentArea
                         .frame(maxHeight: .infinity)
 
                     statusBar
@@ -43,8 +45,14 @@ struct LCARSChrome: View {
     }
 
     @ViewBuilder
-    private var terminalArea: some View {
-        if store.isSplit {
+    private var contentArea: some View {
+        if let module = activeModule {
+            LCARSCommandModulePanel(module: module) { action in
+                playBlip()
+                store.sendCommand(action.command)
+                activeModule = nil // back to the terminal so the output is visible
+            }
+        } else if store.isSplit {
             HStack(spacing: gutter) {
                 TerminalHost(session: store.session(for: store.primaryID))
                 TerminalHost(session: store.session(for: store.secondaryID))
@@ -64,10 +72,12 @@ struct LCARSChrome: View {
 
             LCARSButton(title: "New Session", color: LCARSColor.orange) {
                 playBlip()
+                activeModule = nil
                 store.newSession()
             }
             LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
                 playBlip()
+                activeModule = nil
                 store.toggleSplit()
             }
             LCARSButton(title: "Settings", color: LCARSColor.lilac) {
@@ -76,9 +86,12 @@ struct LCARSChrome: View {
             }
 
             ForEach(commandModules) { module in
-                LCARSCommandModuleButton(module: module, color: LCARSColor.peach) { action in
+                LCARSButton(
+                    title: module.name,
+                    color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
+                ) {
                     playBlip()
-                    store.sendCommand(action.command)
+                    activeModule = (activeModule?.id == module.id) ? nil : module
                 }
             }
 
@@ -105,6 +118,7 @@ struct LCARSChrome: View {
                         color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue
                     ) {
                         playBlip()
+                        activeModule = nil
                         store.select(session.id)
                     }
                     .contextMenu {
@@ -123,7 +137,7 @@ struct LCARSChrome: View {
             .fill(LCARSColor.gloss(LCARSColor.orange))
             .frame(height: barHeight)
             .overlay(alignment: .trailing) {
-                Text("PANEL 47 \u{00B7} TERMINAL")
+                Text("PANEL 47 \u{00B7} \(activeModule?.name.uppercased() ?? "TERMINAL")")
                     .font(LCARSFont.antonio(18, weight: 700))
                     .tracking(1)
                     .foregroundStyle(.black)
