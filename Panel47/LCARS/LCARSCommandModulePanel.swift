@@ -5,7 +5,10 @@ import SwiftUI
 /// up a floating dialog on top of everything.
 struct LCARSCommandModulePanel: View {
     let module: CommandModule
+    /// Present only for modules that track pending updates (Homebrew).
+    var outdated: BrewOutdatedChecker?
     let onSelect: (CommandAction) -> Void
+    var onUpgrade: (OutdatedPackage) -> Void = { _ in }
 
     private let palette: [Color] = [
         LCARSColor.orange, LCARSColor.periwinkle, LCARSColor.lilac,
@@ -30,7 +33,12 @@ struct LCARSCommandModulePanel: View {
                 }
             }
 
-            Spacer()
+            if let outdated {
+                LCARSOutdatedSection(checker: outdated, onUpgrade: onUpgrade)
+                    .frame(maxHeight: .infinity, alignment: .top)
+            } else {
+                Spacer()
+            }
         }
         .padding(28)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
