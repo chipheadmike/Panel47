@@ -9,12 +9,15 @@ struct CommandAction: Identifiable {
 }
 
 /// A group of quick actions for a CLI tool the user actually has installed.
-/// Buttons don't run anything invisibly — they just type the command into
-/// the live shell, the same as if you'd typed it yourself.
+/// Each action runs in its own background process and its output is shown in
+/// an LCARS-styled view — the terminal session isn't involved.
 struct CommandModule: Identifiable {
     let id = UUID()
     let name: String
     let actions: [CommandAction]
+    /// Whether the module's panel should also list packages with pending
+    /// updates, each with its own upgrade button.
+    var tracksOutdatedPackages = false
 }
 
 /// Detects which CLI tools are present on this machine and builds the
@@ -33,7 +36,7 @@ enum ToolDetector {
             CommandAction(title: "Doctor", command: "brew doctor"),
             CommandAction(title: "Cleanup", command: "brew cleanup"),
             CommandAction(title: "List", command: "brew list"),
-        ])
+        ], tracksOutdatedPackages: true)
     }
 
     static func detectAll(fileExists: (String) -> Bool = { FileManager.default.isExecutableFile(atPath: $0) }) -> [CommandModule] {

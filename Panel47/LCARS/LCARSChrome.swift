@@ -14,6 +14,7 @@ struct LCARSChrome: View {
     @State private var showingCalculator = false
     @State private var calculator = CalculatorEngine()
     @StateObject private var commandRunner = ShellCommandRunner()
+    @StateObject private var brewOutdated = BrewOutdatedChecker()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -60,11 +61,21 @@ struct LCARSChrome: View {
                 commandRunner.run(action.command)
             }
         } else if let module = activeModule {
-            LCARSCommandModulePanel(module: module) { action in
-                playBlip()
-                runningAction = action
-                commandRunner.run(action.command)
-            }
+            LCARSCommandModulePanel(
+                module: module,
+                outdated: module.tracksOutdatedPackages ? brewOutdated : nil,
+                onSelect: { action in
+                    playBlip()
+                    runningAction = action
+                    commandRunner.run(action.command)
+                },
+                onUpgrade: { package in
+                    playBlip()
+                    let action = package.upgradeAction
+                    runningAction = action
+                    commandRunner.run(action.command)
+                }
+            )
         } else if store.isSplit {
             HStack(spacing: gutter) {
                 TerminalHost(session: store.session(for: store.primaryID))
