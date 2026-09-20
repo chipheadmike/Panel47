@@ -11,6 +11,8 @@ struct LCARSChrome: View {
 
     @State private var activeModule: CommandModule?
     @State private var runningAction: CommandAction?
+    @State private var showingCalculator = false
+    @State private var calculator = CalculatorEngine()
     @StateObject private var commandRunner = ShellCommandRunner()
 
     private let sidebarWidth: CGFloat = 180
@@ -49,7 +51,9 @@ struct LCARSChrome: View {
 
     @ViewBuilder
     private var contentArea: some View {
-        if let module = activeModule, let action = runningAction {
+        if showingCalculator {
+            LCARSCalculatorView(engine: $calculator, onKeyPress: playBlip)
+        } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
             } onRunAgain: {
@@ -81,14 +85,12 @@ struct LCARSChrome: View {
 
             LCARSButton(title: "New Session", color: LCARSColor.orange) {
                 playBlip()
-                activeModule = nil
-                runningAction = nil
+                showTerminal()
                 store.newSession()
             }
             LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
                 playBlip()
-                activeModule = nil
-                runningAction = nil
+                showTerminal()
                 store.toggleSplit()
             }
             LCARSButton(title: "Settings", color: LCARSColor.lilac) {
@@ -103,8 +105,16 @@ struct LCARSChrome: View {
                 ) {
                     playBlip()
                     runningAction = nil
+                    showingCalculator = false
                     activeModule = (activeModule?.id == module.id) ? nil : module
                 }
+            }
+
+            LCARSButton(title: "Calc", color: showingCalculator ? LCARSColor.paleCanary : LCARSColor.peach) {
+                playBlip()
+                activeModule = nil
+                runningAction = nil
+                showingCalculator.toggle()
             }
 
             sessionList
@@ -132,8 +142,7 @@ struct LCARSChrome: View {
                         color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue
                     ) {
                         playBlip()
-                        activeModule = nil
-                        runningAction = nil
+                        showTerminal()
                         store.select(session.id)
                     }
                     .contextMenu {
@@ -161,7 +170,9 @@ struct LCARSChrome: View {
     }
 
     private var titleBarLabel: String {
-        if let module = activeModule, let action = runningAction {
+        if showingCalculator {
+            return "CALCULATOR"
+        } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {
             return module.name.uppercased()
@@ -178,6 +189,12 @@ struct LCARSChrome: View {
                 LCARSReadout()
                     .padding(.leading, 20)
             }
+    }
+
+    private func showTerminal() {
+        activeModule = nil
+        runningAction = nil
+        showingCalculator = false
     }
 
     private func playBlip() {
