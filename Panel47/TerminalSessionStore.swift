@@ -1,0 +1,91 @@
+import Combine
+import Foundation
+
+/// Owns every open session and which one(s) are on screen. Sessions are never
+/// torn down just because they're not visible — only `close` ends a session.
+final class TerminalSessionStore: ObservableObject {
+    @Published private(set) var sessions: [TerminalSession] = []
+    @Published var primaryID: TerminalSession.ID?
+    @Published var secondaryID: TerminalSession.ID?
+    @Published private(set) var isSplit = false
+
+    private let settings: AppSettings
+    private var cancellables = Set<AnyCancellable>()
+    private var nextNumber = 1
+
+    init(settings: AppSettings) {
+        self.settings = settings
+        newSession()
+
+        settings.$fontSize
+            .combineLatest(settings.$colorScheme)
+            .dropFirst() // skip the replay of the values already applied at each session's creation
+            .sink { [weak self] fontSize, colorScheme in
+                self?.sessions.forEach { $0.applyAppearance(fontSize: fontSize, colorScheme: colorScheme) }
+            }
+            .store(in: &cancellables)
+    }
+
+    @discardableResult
+    func newSession() -> TerminalSession {
+        let session = addSession()
+        primaryID = session.id
+        return session
+    }
+
+    func toggleSplit() {
+        if isSplit {
+            isSplit = false
+            secondaryID = nil
+            return
+        }
+
+        let other = sessions.first(where: { $0.id != primaryID }) ?? addSession()
+        secondaryID = other.id
+        isSplit = true
+    }
+
+    func select(_ id: TerminalSession.ID) {
+        primaryID = id
+    }
+
+    func close(_ id: TerminalSession.ID) {
+        sessions.removeAll { $0.id == id }
+
+        if primaryID == id {
+            primaryID = sessions.last?.id
+        }
+        if secondaryID == id {
+            secondaryID = sessions.last?.id
+            if secondaryID == primaryID {
+                secondaryID = sessions.first(where: { $0.id != primaryID })?.id
+            }
+        }
+        if secondaryID == nil {
+            isSplit = false
+        }
+        if sessions.isEmpty {
+            newSession()
+        }
+    }
+
+    func session(for id: TerminalSession.ID?) -> TerminalSession? {
+        guard let id else { return nil }
+        return sessions.first { $0.id == id }
+    }
+
+    /// Types a command into the primary session's shell, as if the user had
+    /// typed it themselves and pressed Return — this runs for real, in the
+    /// visible terminal, not in some hidden process.
+    func sendCommand(_ command: String) {
+        session(for: primaryID)?.terminalView.send(txt: command + "\n")
+    }
+
+    @discardableResult
+    private func addSession() -> TerminalSession {
+        let session = TerminalSession(number: nextNumber, settings: settings)
+        nextNumber += 1
+        sessions.append(session)
+        return session
+    }
+}

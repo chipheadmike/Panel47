@@ -1,9 +1,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var settings: AppSettings
+    @StateObject private var store: TerminalSessionStore
+    @State private var showingSettings = false
+
+    init() {
+        let settings = AppSettings()
+        _settings = StateObject(wrappedValue: settings)
+        _store = StateObject(wrappedValue: TerminalSessionStore(settings: settings))
+    }
+
     var body: some View {
-        TerminalView()
-            .frame(minWidth: 640, minHeight: 420)
+        LCARSChrome(store: store, settings: settings, showingSettings: $showingSettings)
+            .frame(minWidth: 900, minHeight: 700)
+            .sheet(isPresented: $showingSettings) {
+                SettingsView(settings: settings)
+            }
     }
 }
 

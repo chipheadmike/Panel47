@@ -1,0 +1,33 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c1c1c"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="orangeGloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc266"/>
+      <stop offset="1" stop-color="#ff9900"/>
+    </linearGradient>
+    <linearGradient id="periwinkleGloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c2c2e6"/>
+      <stop offset="1" stop-color="#9999cc"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="185" ry="185" fill="url(#bgGrad)"/>
+
+  <!-- Elbow, matching LCARSElbow's topLeft geometry: armThickness 220, outerRadius 420, inset 140 -->
+  <path d="M 884 140
+           L 560 140
+           A 420 420 0 0 0 140 560
+           L 140 884
+           L 360 884
+           L 360 560
+           A 200 200 0 0 1 560 360
+           L 884 360
+           Z"
+        fill="url(#orangeGloss)"/>
+
+  <!-- Small accent block, bottom-right, echoing the app's multi-color panel language -->
+  <rect x="704" y="704" width="180" height="180" rx="36" ry="36" fill="url(#periwinkleGloss)"/>
+</svg>
