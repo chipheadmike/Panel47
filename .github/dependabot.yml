@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "swift"
+    directory: "/"
+    # Work happens on dev and is promoted dev -> stage -> main, so version
+    # updates go to dev rather than straight to main.
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
