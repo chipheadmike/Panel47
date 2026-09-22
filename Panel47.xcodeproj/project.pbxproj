@@ -24,6 +24,7 @@
 		27A18229475F54A174EFC650 /* ShellCommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */; };
 		2AF6237B5BDEC3A3CCD6108A /* CommandModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27280187733034153C67B9 /* CommandModule.swift */; };
 		319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A30160B328D0B86A058A5 /* Assets.xcassets */; };
+		35AC02AD1AD4CE84EFF821F2 /* PTYCommandRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13024A0AB98538AAFB7DE81F /* PTYCommandRunnerTests.swift */; };
 		36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54707C9533AC8A1497E1EFCA /* CommsSampler.swift */; };
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
 		3CA268B0B428BBE1B6973F07 /* CargoMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988BF638B8E5A054DD5F6861 /* CargoMetrics.swift */; };
@@ -34,6 +35,7 @@
 		54B05E6C5CE96CADBDC738D1 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 15E4596D80CABA3471E062F9 /* SwiftTerm */; };
 		55681F16F98A790D33DD0A61 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BFB3BA3AC2243DEC0A43A4 /* AppSettings.swift */; };
 		5BEC0CC31217E76F53EDAF9A /* TerminalSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1323372F45E25A07CE726E6 /* TerminalSessionStore.swift */; };
+		5D4FF356AC05C6AA7F8B09F9 /* PTYCommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFEA8ABAD335D7CDD44FA55 /* PTYCommandRunner.swift */; };
 		5FF718FD908C1BC90363014B /* ProcessMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420214518FEFE5F1A02FCA5 /* ProcessMetrics.swift */; };
 		61CBB3ABA6A21E47631B8917 /* CalculatorEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */; };
 		61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */; };
@@ -96,6 +98,7 @@
 		0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityMetrics.swift; sourceTree = "<group>"; };
 		105BC816CE8C5A745879871D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMetricsTests.swift; sourceTree = "<group>"; };
+		13024A0AB98538AAFB7DE81F /* PTYCommandRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTYCommandRunnerTests.swift; sourceTree = "<group>"; };
 		1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSSoundPlayer.swift; sourceTree = "<group>"; };
 		18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommandRunnerTests.swift; sourceTree = "<group>"; };
 		19F9201DE1131D9F55FBFA1A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		BF7DAEB56F89259B528C5D29 /* StardateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StardateTests.swift; sourceTree = "<group>"; };
 		C25482A6C6139E243606CA6E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Panel47/Fonts; sourceTree = SOURCE_ROOT; };
 		C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolDetectorTests.swift; sourceTree = "<group>"; };
+		CBFEA8ABAD335D7CDD44FA55 /* PTYCommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTYCommandRunner.swift; sourceTree = "<group>"; };
 		CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47UITests.swift; sourceTree = "<group>"; };
 		CF7A4E814232F39726D41E6E /* BrewOutdatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewOutdatedTests.swift; sourceTree = "<group>"; };
 		D3BC23C7F851C430951BEE2C /* LCARSCommandRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommandRunView.swift; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 				BE94A29C12FE117A8A63DA04 /* Panel47App.swift */,
 				D420214518FEFE5F1A02FCA5 /* ProcessMetrics.swift */,
 				93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */,
+				CBFEA8ABAD335D7CDD44FA55 /* PTYCommandRunner.swift */,
 				0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */,
 				F2FFF6E71261781B751F7E09 /* SecuritySampler.swift */,
 				97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */,
@@ -269,6 +274,7 @@
 				EE5EB5846EEDE0F2500F963B /* GitMetricsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */,
+				13024A0AB98538AAFB7DE81F /* PTYCommandRunnerTests.swift */,
 				4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */,
 				18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */,
 				BF7DAEB56F89259B528C5D29 /* StardateTests.swift */,
@@ -409,6 +415,7 @@
 				65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */,
 				C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */,
 				0680579EC0917DAFC9356A94 /* GitMetricsTests.swift in Sources */,
+				35AC02AD1AD4CE84EFF821F2 /* PTYCommandRunnerTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */,
 				C30CCB33D518EF273B247844 /* SecurityMetricsTests.swift in Sources */,
@@ -455,6 +462,7 @@
 				0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */,
 				62CD636B51BE71D5A0B313D3 /* LCARSTacticalView.swift in Sources */,
 				8EE9874FC662F4335735C0BF /* LCARSVibrancyBackground.swift in Sources */,
+				5D4FF356AC05C6AA7F8B09F9 /* PTYCommandRunner.swift in Sources */,
 				75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */,
 				5FF718FD908C1BC90363014B /* ProcessMetrics.swift in Sources */,
 				AE7407EE031C5BBD9A6E3331 /* ProcessSampler.swift in Sources */,

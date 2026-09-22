@@ -7,6 +7,8 @@ import SwiftUI
 struct LCARSTacticalView: View {
     @ObservedObject var model: TacticalModel
 
+    @State private var passwordEntry = ""
+
     var body: some View {
         let status = model.status
         let alerts = status.map(GitAlertRules.reasons) ?? []
@@ -36,6 +38,10 @@ struct LCARSTacticalView: View {
 
                 if model.isActionRunning || !model.actionOutput.isEmpty {
                     actionOutputBlock
+                }
+
+                if let prompt = model.passwordPrompt {
+                    passwordPromptRow(prompt)
                 }
 
                 if let status {
@@ -115,6 +121,38 @@ struct LCARSTacticalView: View {
             .background(Color.white.opacity(0.05))
             .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+    }
+
+    /// The password is only ever held in this view's own transient
+    /// `@State`, sent straight to the model, and cleared immediately after
+    /// — never appended to `actionOutput` or stored anywhere else.
+    private func passwordPromptRow(_ prompt: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(prompt.uppercased())
+                .font(LCARSFont.antonio(18, weight: 700))
+                .tracking(0.5)
+                .foregroundStyle(LCARSColor.paleCanary)
+
+            HStack(spacing: 10) {
+                SecureField("", text: $passwordEntry)
+                    .textFieldStyle(.plain)
+                    .font(LCARSFont.antonio(18, weight: 400))
+                    .foregroundStyle(LCARSColor.textOnBlack)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 8)
+                    .background(Color.white.opacity(0.08))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .onSubmit(submitPassword)
+
+                LCARSButton(title: "Submit", color: LCARSColor.paleCanary, alignment: .center, action: submitPassword)
+                    .frame(width: 130)
+            }
+        }
+    }
+
+    private func submitPassword() {
+        model.submitPassword(passwordEntry)
+        passwordEntry = ""
     }
 
     private func fileList(_ status: GitRepoStatus) -> some View {
