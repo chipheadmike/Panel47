@@ -170,3 +170,23 @@ struct LiveFileBrowserSamplerTests {
         #expect(abs(file.modifiedDate!.timeIntervalSinceNow) < 10)
     }
 }
+
+struct TitleBarFormatTests {
+    @Test func shortPathsAreUnchanged() {
+        #expect(TitleBarFormat.truncatedPathSuffix("~/docs") == "~/docs")
+        #expect(TitleBarFormat.truncatedPathSuffix("") == "")
+    }
+
+    @Test func exactlyAtTheLimitIsUnchanged() {
+        let path = String(repeating: "a", count: 40)
+        #expect(TitleBarFormat.truncatedPathSuffix(path, keepingLast: 40) == path)
+    }
+
+    @Test func aLongPathKeepsOnlyItsTailWithAnEllipsisPrefix() {
+        let path = "~/" + String(repeating: "a", count: 50)
+        let result = TitleBarFormat.truncatedPathSuffix(path, keepingLast: 40)
+        #expect(result.hasPrefix("\u{2026}"))
+        #expect(result.hasSuffix(String(repeating: "a", count: 40)))
+        #expect(result.count == 41)
+    }
+}

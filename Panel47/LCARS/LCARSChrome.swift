@@ -18,6 +18,16 @@ enum SidebarPanel: Equatable {
     }
 }
 
+enum TitleBarFormat {
+    /// Keeps "PANEL 47 · <PANEL NAME> ·" always intact in the title bar —
+    /// only the path itself gets clipped (from the front, keeping the most
+    /// specific, currently-relevant end) once it's long enough to need it.
+    static func truncatedPathSuffix(_ path: String, keepingLast maxLength: Int = 40) -> String {
+        guard path.count > maxLength else { return path }
+        return "\u{2026}" + path.suffix(maxLength)
+    }
+}
+
 /// The real window chrome: a swept corner over a button sidebar on the left,
 /// thin title/status bars top and bottom, with the active session(s) — or a
 /// command module's actions, or a command's running output — filling the
@@ -242,13 +252,24 @@ struct LCARSChrome: View {
                     .font(LCARSFont.antonio(18, weight: 700))
                     .tracking(1)
                     .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .truncationMode(.head)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing, 24)
+                    .padding(.leading, 24)
             }
     }
 
     private var titleBarLabel: String {
         if let panel = activePanel {
-            return panel.titleBarLabel
+            // These two drill into a directory, and the content area scrolls
+            // — showing the path here too keeps it visible even once the
+            // current folder's row has scrolled out of view.
+            switch panel {
+            case .navigator: return "NAVIGATOR \u{00B7} \(TitleBarFormat.truncatedPathSuffix(navigatorModel.displayPath).uppercased())"
+            case .cargoBay: return "CARGO BAY \u{00B7} \(TitleBarFormat.truncatedPathSuffix(cargoModel.displayPath).uppercased())"
+            default: return panel.titleBarLabel
+            }
         } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {
