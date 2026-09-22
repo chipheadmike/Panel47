@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The full-screen panels that swap into the viewscreen from the sidebar.
 enum SidebarPanel: Equatable {
-    case calculator, status, engineering, comms, security, cargoBay
+    case calculator, status, engineering, comms, security, cargoBay, tactical
 
     var titleBarLabel: String {
         switch self {
@@ -12,6 +12,7 @@ enum SidebarPanel: Equatable {
         case .comms: return "COMMS"
         case .security: return "SECURITY"
         case .cargoBay: return "CARGO BAY"
+        case .tactical: return "TACTICAL"
         }
     }
 }
@@ -36,12 +37,26 @@ struct LCARSChrome: View {
     @StateObject private var commsModel = CommsModel()
     @StateObject private var securityModel = SecurityModel()
     @StateObject private var cargoModel = CargoModel()
+    @StateObject private var tacticalModel: TacticalModel
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
     private let elbowHeight: CGFloat = 96
     private let gutter: CGFloat = 4
     private let commandModules = ToolDetector.detectAll()
+    /// Checked once at launch, the same as `commandModules` — a directory
+    /// changed in Settings after that won't retroactively show or hide the
+    /// button until the app restarts.
+    private let isGitRepository: Bool
+
+    init(store: TerminalSessionStore, settings: AppSettings, showingSettings: Binding<Bool>) {
+        self.store = store
+        self.settings = settings
+        self._showingSettings = showingSettings
+        let directory = settings.workingDirectory.isEmpty ? NSHomeDirectory() : settings.workingDirectory
+        self._tacticalModel = StateObject(wrappedValue: TacticalModel(directory: directory))
+        self.isGitRepository = GitSampler.isRepository(directory: directory)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -85,6 +100,8 @@ struct LCARSChrome: View {
             LCARSSecurityView(model: securityModel)
         } else if activePanel == .cargoBay {
             LCARSCargoBayView(model: cargoModel)
+        } else if activePanel == .tactical {
+            LCARSTacticalView(model: tacticalModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -158,6 +175,9 @@ struct LCARSChrome: View {
             panelButton("Comms", .comms)
             panelButton("Security", .security)
             panelButton("Cargo Bay", .cargoBay)
+            if isGitRepository {
+                panelButton("Tactical", .tactical)
+            }
 
             sessionList
 
