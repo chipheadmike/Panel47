@@ -5,9 +5,10 @@ A macOS terminal with an LCARS-style interface, written in SwiftUI.
 Underneath it is a real terminal (your own shell, in real PTY sessions). On top of it, common tasks get their own panels, in the swept-corner, orange-and-lilac style of a starship console, so you don't have to type commands or read raw terminal output for them.
 
 <p>
-  <img src="docs/status.png" alt="The ship status panel" width="32%">
-  <img src="docs/brew.png" alt="The BREW panel" width="32%">
-  <img src="docs/calculator.png" alt="The calculator" width="32%">
+  <img src="docs/status.png" alt="The ship status panel" width="24%">
+  <img src="docs/engineering.png" alt="The engineering panel" width="24%">
+  <img src="docs/brew.png" alt="The BREW panel" width="24%">
+  <img src="docs/calculator.png" alt="The calculator" width="24%">
 </p>
 
 > **Unofficial fan project.** Panel 47 is not affiliated with, endorsed by, or sponsored by Paramount, CBS, or the Star Trek franchise. Star Trek, LCARS and related names and marks belong to their respective owners. This project is non-commercial and uses no Star Trek logos, artwork or audio.
@@ -18,6 +19,7 @@ Underneath it is a real terminal (your own shell, in real PTY sessions). On top 
 - **Command panels for tools you actually have.** A **BREW** button appears only if Homebrew is detected. Its actions (update, outdated, upgrade, doctor, cleanup, list) run in a separate background process and stream their output into an LCARS-styled view. Your terminal sessions aren't involved.
 - **One-tap upgrades.** The BREW panel runs `brew outdated` and shows each outdated package as its own button. Tap one to run `brew upgrade <name>`.
 - **Ship Status.** Live readouts of your Mac's processor, memory, storage, battery, network traffic, uptime and thermal state, read directly from the operating system (nothing is estimated or faked), plus a rolling 60-second CPU history. When something is in danger (a nearly full disk, memory pressure, a low unplugged battery, or a serious thermal state) the panel goes to red alert. It only samples while the panel is open.
+- **Engineering.** The ten busiest of your processes, live, sortable by processor or memory. CPU is each process's share of one core and memory is the same footprint figure Activity Monitor shows. Each row has a two-step **Terminate** control (press it, then confirm) that sends a polite quit request (SIGTERM). It only lists and terminates your own processes, and refuses pid 1 and Panel 47 itself.
 - **Calculator.** An LCARS calculator with exact decimal math (0.1 + 0.2 is 0.3) and keyboard support.
 - **Live readouts.** Clock and stardate in the sidebar.
 - **Settings.** Font size and terminal color scheme (applied live to open sessions), shell, working directory, and optional UI sounds. Sounds are off by default and are synthesized in code, so there is no sampled audio.
@@ -57,7 +59,7 @@ xcodebuild -project Panel47.xcodeproj -scheme Panel47 -configuration Debug \
   -skipPackagePluginValidation -only-testing:Panel47Tests test
 ```
 
-The unit tests cover the calculator engine, session management, settings persistence, the stardate math, Homebrew detection, output parsing, and the background command runner. The UI test target is only a launch check and needs macOS UI automation permission to run.
+The unit tests cover the calculator engine, session management, settings persistence, the stardate math, the process list and its terminate safeguards, Homebrew detection, output parsing, and the background command runner. The UI test target is only a launch check and needs macOS UI automation permission to run.
 
 ## A note on security
 

@@ -13,10 +13,12 @@ struct LCARSChrome: View {
     @State private var runningAction: CommandAction?
     @State private var showingCalculator = false
     @State private var showingStatus = false
+    @State private var showingEngineering = false
     @State private var calculator = CalculatorEngine()
     @StateObject private var commandRunner = ShellCommandRunner()
     @StateObject private var brewOutdated = BrewOutdatedChecker()
     @StateObject private var statusModel = SystemStatusModel()
+    @StateObject private var processModel = ProcessListModel()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -58,6 +60,8 @@ struct LCARSChrome: View {
             LCARSCalculatorView(engine: $calculator, onKeyPress: playBlip)
         } else if showingStatus {
             LCARSStatusView(model: statusModel)
+        } else if showingEngineering {
+            LCARSEngineeringView(model: processModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -122,6 +126,7 @@ struct LCARSChrome: View {
                     runningAction = nil
                     showingCalculator = false
                     showingStatus = false
+                    showingEngineering = false
                     activeModule = (activeModule?.id == module.id) ? nil : module
                 }
             }
@@ -131,6 +136,7 @@ struct LCARSChrome: View {
                 activeModule = nil
                 runningAction = nil
                 showingStatus = false
+                showingEngineering = false
                 showingCalculator.toggle()
             }
 
@@ -139,7 +145,17 @@ struct LCARSChrome: View {
                 activeModule = nil
                 runningAction = nil
                 showingCalculator = false
+                showingEngineering = false
                 showingStatus.toggle()
+            }
+
+            LCARSButton(title: "Engineering", color: showingEngineering ? LCARSColor.paleCanary : LCARSColor.peach) {
+                playBlip()
+                activeModule = nil
+                runningAction = nil
+                showingCalculator = false
+                showingStatus = false
+                showingEngineering.toggle()
             }
 
             sessionList
@@ -199,6 +215,8 @@ struct LCARSChrome: View {
             return "CALCULATOR"
         } else if showingStatus {
             return "STATUS"
+        } else if showingEngineering {
+            return "ENGINEERING"
         } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {
@@ -223,6 +241,7 @@ struct LCARSChrome: View {
         runningAction = nil
         showingCalculator = false
         showingStatus = false
+        showingEngineering = false
     }
 
     private func playBlip() {
