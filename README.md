@@ -5,13 +5,14 @@ A macOS terminal with an LCARS-style interface, written in SwiftUI.
 Underneath it is a real terminal (your own shell, in real PTY sessions). On top of it, common tasks get their own panels, in the swept-corner, orange-and-lilac style of a starship console, so you don't have to type commands or read raw terminal output for them.
 
 <p>
-  <img src="docs/status.png" alt="The ship status panel" width="14%">
-  <img src="docs/engineering.png" alt="The engineering panel" width="14%">
-  <img src="docs/comms.png" alt="The communications panel" width="14%">
-  <img src="docs/security.png" alt="The security panel" width="14%">
-  <img src="docs/cargo.png" alt="The cargo bay panel" width="14%">
-  <img src="docs/brew.png" alt="The BREW panel" width="14%">
-  <img src="docs/calculator.png" alt="The calculator" width="14%">
+  <img src="docs/status.png" alt="The ship status panel" width="12%">
+  <img src="docs/engineering.png" alt="The engineering panel" width="12%">
+  <img src="docs/comms.png" alt="The communications panel" width="12%">
+  <img src="docs/security.png" alt="The security panel" width="12%">
+  <img src="docs/cargo.png" alt="The cargo bay panel" width="12%">
+  <img src="docs/tactical.png" alt="The tactical panel" width="12%">
+  <img src="docs/brew.png" alt="The BREW panel" width="12%">
+  <img src="docs/calculator.png" alt="The calculator" width="12%">
 </p>
 
 > **Unofficial fan project.** Panel 47 is not affiliated with, endorsed by, or sponsored by Paramount, CBS, or the Star Trek franchise. Star Trek, LCARS and related names and marks belong to their respective owners. This project is non-commercial and uses no Star Trek logos, artwork or audio.
@@ -25,6 +26,7 @@ Underneath it is a real terminal (your own shell, in real PTY sessions). On top 
 - **Engineering.** The ten busiest of your processes, live, sortable by processor or memory. CPU is each process's share of one core and memory is the same footprint figure Activity Monitor shows. Each row has a two-step **Terminate** control (press it, then confirm) that sends a polite quit request (SIGTERM). It only lists and terminates your own processes, and refuses pid 1 and Panel 47 itself.
 - **Comms.** Every TCP port your processes are listening on and which program owns it, marked *open to network* or *local only* (a worker pool sharing a port, like a web server's, shows as one row). Also a live latency gauge from real pings to 1.1.1.1, 8.8.8.8 or your gateway, with packet-loss tracking, plus your link, address and gateway (and Wi-Fi signal strength and rate when you're on Wi-Fi). Ports get the same two-step **Terminate** control as Engineering. Pings and scans run only while the panel is open.
 - **Security.** Five checks read straight from the OS: FileVault, the firewall, Gatekeeper, System Integrity Protection, and how long since your last Time Machine backup (over a week old counts as stale). Each is ENABLED, DISABLED, or, for Time Machine when its destination isn't currently mounted, an honest UNKNOWN rather than a guess. Anything DISABLED (or no backup destination at all) puts the panel on red alert. Checks are slow to change, so it refreshes every 30 seconds, and only while the panel is open.
+- **Tactical.** A git status board for your configured working directory — branch, ahead/behind the upstream, and the working tree as a file list (modified, staged, untracked, or in conflict). Fetch, Pull and Stash run in the background with their output shown right there, the same way BREW's actions do. Pull refuses to run on a dirty working tree. Only appears when that directory is actually a git repository. Goes to red alert on a real merge conflict; being behind the remote is shown plainly, not alarmed on.
 - **Cargo Bay.** The largest folders under your home directory, drilled into one level at a time with an OPEN button per row. Folders appear as `du` finishes measuring each one, so a big home directory shows real progress instead of a spinner. A footnote says when something was skipped for being system-protected, rather than silently showing it as empty.
 - **Calculator.** An LCARS calculator with exact decimal math (0.1 + 0.2 is 0.3) and keyboard support.
 - **Live readouts.** Clock and stardate in the sidebar.
@@ -65,7 +67,7 @@ xcodebuild -project Panel47.xcodeproj -scheme Panel47 -configuration Debug \
   -skipPackagePluginValidation -only-testing:Panel47Tests test
 ```
 
-The unit tests cover the calculator engine, session management, settings persistence, the stardate math, the process list, the listening-port scan and their terminate safeguards, the ping and route parsers, the security checks, the Time Machine backup-age parser, and the folder-size scanner, Homebrew detection, output parsing, and the background command runner. The UI test target is only a launch check and needs macOS UI automation permission to run.
+The unit tests cover the calculator engine, session management, settings persistence, the stardate math, the process list, the listening-port scan and their terminate safeguards, the ping and route parsers, the security checks, the Time Machine backup-age parser, the folder-size scanner, and the git status parser, Homebrew detection, output parsing, and the background command runner. The UI test target is only a launch check and needs macOS UI automation permission to run.
 
 ## A note on security
 

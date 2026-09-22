@@ -10,6 +10,7 @@
 		0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */; };
 		02D7C5A9AD4260F4F58FEA70 /* CommsMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */; };
 		063C0B2B761FCC3FC2DD37D8 /* ToolDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5694BF73F786DC190EDDB71 /* ToolDetectorTests.swift */; };
+		0680579EC0917DAFC9356A94 /* GitMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5EB5846EEDE0F2500F963B /* GitMetricsTests.swift */; };
 		0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */; };
 		0DEADC4A5FA5939BB5B3D65D /* ShellCommandRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */; };
 		0DEB7DBC30EED7BFC76DD1F5 /* SystemMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6721D2CD95A57E9C1ACE6F2B /* SystemMetricsTests.swift */; };
@@ -27,6 +28,7 @@
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
 		3CA268B0B428BBE1B6973F07 /* CargoMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988BF638B8E5A054DD5F6861 /* CargoMetrics.swift */; };
 		3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */; };
+		3D205376DDC947C889BBEC9D /* GitMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B381C4594E12F962DC5D9A /* GitMetrics.swift */; };
 		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
 		5190171854E308765937FBC4 /* StardateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DAEB56F89259B528C5D29 /* StardateTests.swift */; };
 		54B05E6C5CE96CADBDC738D1 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 15E4596D80CABA3471E062F9 /* SwiftTerm */; };
@@ -35,6 +37,7 @@
 		5FF718FD908C1BC90363014B /* ProcessMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420214518FEFE5F1A02FCA5 /* ProcessMetrics.swift */; };
 		61CBB3ABA6A21E47631B8917 /* CalculatorEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */; };
 		61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */; };
+		62CD636B51BE71D5A0B313D3 /* LCARSTacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DC718E03D58AC03904A6 /* LCARSTacticalView.swift */; };
 		63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */; };
 		65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */; };
 		6C32F39B0758D2A86730F690 /* CargoScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D8DAD19CC408DFF2E6843 /* CargoScanner.swift */; };
@@ -48,6 +51,7 @@
 		9DFDD5C3556CEA45A52A3DE4 /* LCARSCommandModulePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E795C80B4CF06638EEB7D /* LCARSCommandModulePanel.swift */; };
 		A67B5323DEEBCD4BFB8FEAB8 /* TerminalHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E940B6323ECF43034C8B8 /* TerminalHost.swift */; };
 		AE7407EE031C5BBD9A6E3331 /* ProcessSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */; };
+		AF546629E330ACC77D986875 /* GitSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD27F5E832A170F9BE0CA8 /* GitSampler.swift */; };
 		AFBA57173D2FEEA81B138C75 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F9201DE1131D9F55FBFA1A /* SettingsView.swift */; };
 		B200CF746041E63131AF8935 /* SystemMetricsSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD52B9308A0F290D4719D18 /* SystemMetricsSampler.swift */; };
 		B50266ADD510ACAA74A14C22 /* SecurityMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */; };
@@ -106,10 +110,12 @@
 		5D0355FB7A7B3E11838195F9 /* LCARSCommsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommsView.swift; sourceTree = "<group>"; };
 		6721D2CD95A57E9C1ACE6F2B /* SystemMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsTests.swift; sourceTree = "<group>"; };
 		6809E136A01F3EC6B97D467B /* Panel47UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BD27F5E832A170F9BE0CA8 /* GitSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitSampler.swift; sourceTree = "<group>"; };
 		70C1B6F33FBED3613F6E5D90 /* LCARSChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSChrome.swift; sourceTree = "<group>"; };
 		879747F87A2BB3DDC7FB101C /* LCARSOutdatedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSOutdatedSection.swift; sourceTree = "<group>"; };
 		89980613A78EF284BEF34C32 /* LCARSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSFont.swift; sourceTree = "<group>"; };
 		8B0A4967AA40294DB773E23E /* LCARSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSButton.swift; sourceTree = "<group>"; };
+		8D64DC718E03D58AC03904A6 /* LCARSTacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSTacticalView.swift; sourceTree = "<group>"; };
 		924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47Tests.swift; sourceTree = "<group>"; };
 		93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessSampler.swift; sourceTree = "<group>"; };
 		9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSVibrancyBackground.swift; sourceTree = "<group>"; };
@@ -122,6 +128,7 @@
 		A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStardateView.swift; sourceTree = "<group>"; };
 		A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSReadout.swift; sourceTree = "<group>"; };
 		AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionStoreTests.swift; sourceTree = "<group>"; };
+		B0B381C4594E12F962DC5D9A /* GitMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitMetrics.swift; sourceTree = "<group>"; };
 		B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stardate.swift; sourceTree = "<group>"; };
 		B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoMetricsTests.swift; sourceTree = "<group>"; };
 		BD27280187733034153C67B9 /* CommandModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandModule.swift; sourceTree = "<group>"; };
@@ -145,6 +152,7 @@
 		E81CE3C0B278FED55CAD18E8 /* SystemMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetrics.swift; sourceTree = "<group>"; };
 		E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsMetricsTests.swift; sourceTree = "<group>"; };
 		EDFE4D4395048B6D414DEE3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EE5EB5846EEDE0F2500F963B /* GitMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitMetricsTests.swift; sourceTree = "<group>"; };
 		F2FFF6E71261781B751F7E09 /* SecuritySampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySampler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +209,7 @@
 				A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */,
 				095F71D694006DCAD9120E21 /* LCARSStatusView.swift */,
 				98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */,
+				8D64DC718E03D58AC03904A6 /* LCARSTacticalView.swift */,
 				9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */,
 				19F9201DE1131D9F55FBFA1A /* SettingsView.swift */,
 			);
@@ -220,6 +229,8 @@
 				5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */,
 				54707C9533AC8A1497E1EFCA /* CommsSampler.swift */,
 				EDFE4D4395048B6D414DEE3A /* ContentView.swift */,
+				B0B381C4594E12F962DC5D9A /* GitMetrics.swift */,
+				68BD27F5E832A170F9BE0CA8 /* GitSampler.swift */,
 				105BC816CE8C5A745879871D /* Info.plist */,
 				1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */,
 				BE94A29C12FE117A8A63DA04 /* Panel47App.swift */,
@@ -255,6 +266,7 @@
 				43297C48087043501558CA1F /* CalculatorEngineTests.swift */,
 				B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */,
 				E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */,
+				EE5EB5846EEDE0F2500F963B /* GitMetricsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */,
 				4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */,
@@ -396,6 +408,7 @@
 				C53CD0D939E8C43B5EC74075 /* CalculatorEngineTests.swift in Sources */,
 				65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */,
 				C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */,
+				0680579EC0917DAFC9356A94 /* GitMetricsTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */,
 				C30CCB33D518EF273B247844 /* SecurityMetricsTests.swift in Sources */,
@@ -420,6 +433,8 @@
 				02D7C5A9AD4260F4F58FEA70 /* CommsMetrics.swift in Sources */,
 				36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */,
 				1C090984035B4E20110E05DF /* ContentView.swift in Sources */,
+				3D205376DDC947C889BBEC9D /* GitMetrics.swift in Sources */,
+				AF546629E330ACC77D986875 /* GitSampler.swift in Sources */,
 				142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */,
 				61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */,
 				1570947141EFDC0700DD5145 /* LCARSCargoBayView.swift in Sources */,
@@ -438,6 +453,7 @@
 				7FDC8FD25A3A8D51573903E9 /* LCARSStardateView.swift in Sources */,
 				6E417C9F44612A52E46E2F87 /* LCARSStatusView.swift in Sources */,
 				0171814031E2E984BE0BF9C5 /* LCARSStyleGuide.swift in Sources */,
+				62CD636B51BE71D5A0B313D3 /* LCARSTacticalView.swift in Sources */,
 				8EE9874FC662F4335735C0BF /* LCARSVibrancyBackground.swift in Sources */,
 				75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */,
 				5FF718FD908C1BC90363014B /* ProcessMetrics.swift in Sources */,
