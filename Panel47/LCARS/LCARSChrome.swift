@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The full-screen panels that swap into the viewscreen from the sidebar.
 enum SidebarPanel: Equatable {
-    case calculator, status, engineering, comms, security, cargoBay, tactical
+    case calculator, status, engineering, comms, security, cargoBay, tactical, navigator
 
     var titleBarLabel: String {
         switch self {
@@ -13,6 +13,7 @@ enum SidebarPanel: Equatable {
         case .security: return "SECURITY"
         case .cargoBay: return "CARGO BAY"
         case .tactical: return "TACTICAL"
+        case .navigator: return "NAVIGATOR"
         }
     }
 }
@@ -38,6 +39,7 @@ struct LCARSChrome: View {
     @StateObject private var securityModel = SecurityModel()
     @StateObject private var cargoModel = CargoModel()
     @StateObject private var tacticalModel: TacticalModel
+    @StateObject private var navigatorModel: FileBrowserModel
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -55,6 +57,7 @@ struct LCARSChrome: View {
         self._showingSettings = showingSettings
         let directory = settings.workingDirectory.isEmpty ? NSHomeDirectory() : settings.workingDirectory
         self._tacticalModel = StateObject(wrappedValue: TacticalModel(directory: directory))
+        self._navigatorModel = StateObject(wrappedValue: FileBrowserModel(rootPath: directory))
         self.isGitRepository = GitSampler.isRepository(directory: directory)
     }
 
@@ -102,6 +105,8 @@ struct LCARSChrome: View {
             LCARSCargoBayView(model: cargoModel)
         } else if activePanel == .tactical {
             LCARSTacticalView(model: tacticalModel)
+        } else if activePanel == .navigator {
+            LCARSNavigatorView(model: navigatorModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -175,6 +180,7 @@ struct LCARSChrome: View {
             panelButton("Comms", .comms)
             panelButton("Security", .security)
             panelButton("Cargo Bay", .cargoBay)
+            panelButton("Navigator", .navigator)
             if isGitRepository {
                 panelButton("Tactical", .tactical)
             }
