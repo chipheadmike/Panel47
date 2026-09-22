@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The full-screen panels that swap into the viewscreen from the sidebar.
 enum SidebarPanel: Equatable {
-    case calculator, status, engineering, comms, security
+    case calculator, status, engineering, comms, security, cargoBay
 
     var titleBarLabel: String {
         switch self {
@@ -11,6 +11,7 @@ enum SidebarPanel: Equatable {
         case .engineering: return "ENGINEERING"
         case .comms: return "COMMS"
         case .security: return "SECURITY"
+        case .cargoBay: return "CARGO BAY"
         }
     }
 }
@@ -34,6 +35,7 @@ struct LCARSChrome: View {
     @StateObject private var processModel = ProcessListModel()
     @StateObject private var commsModel = CommsModel()
     @StateObject private var securityModel = SecurityModel()
+    @StateObject private var cargoModel = CargoModel()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -81,6 +83,8 @@ struct LCARSChrome: View {
             LCARSCommsView(model: commsModel)
         } else if activePanel == .security {
             LCARSSecurityView(model: securityModel)
+        } else if activePanel == .cargoBay {
+            LCARSCargoBayView(model: cargoModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -153,6 +157,7 @@ struct LCARSChrome: View {
             panelButton("Engineering", .engineering)
             panelButton("Comms", .comms)
             panelButton("Security", .security)
+            panelButton("Cargo Bay", .cargoBay)
 
             sessionList
 
