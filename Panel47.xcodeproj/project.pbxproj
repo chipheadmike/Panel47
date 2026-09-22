@@ -34,6 +34,7 @@
 		61CBB3ABA6A21E47631B8917 /* CalculatorEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */; };
 		61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */; };
 		63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */; };
+		6D13385F2F5102C566D7004C /* LCARSSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E5021E983477AE1B195886 /* LCARSSecurityView.swift */; };
 		6E417C9F44612A52E46E2F87 /* LCARSStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095F71D694006DCAD9120E21 /* LCARSStatusView.swift */; };
 		6FC1F7B0EEB8451F14A50268 /* LCARSEngineeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F18BBF405E2F648AD47707 /* LCARSEngineeringView.swift */; };
 		73C6E8B4E0260BEE285C9B9D /* TerminalSessionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */; };
@@ -45,9 +46,12 @@
 		AE7407EE031C5BBD9A6E3331 /* ProcessSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */; };
 		AFBA57173D2FEEA81B138C75 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F9201DE1131D9F55FBFA1A /* SettingsView.swift */; };
 		B200CF746041E63131AF8935 /* SystemMetricsSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD52B9308A0F290D4719D18 /* SystemMetricsSampler.swift */; };
+		B50266ADD510ACAA74A14C22 /* SecurityMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */; };
+		BC76E4EC75B6E3F5F07991D1 /* SecuritySampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFF6E71261781B751F7E09 /* SecuritySampler.swift */; };
 		C0C77F767DFB26A163BD7BBF /* BrewOutdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81671CB654360CDE88F96F /* BrewOutdated.swift */; };
 		C1941A9AAD64FE56A9DDCF0D /* Stardate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */; };
 		C20B74A29FB9BB9A9BC7DD52 /* Panel47UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B966FD9A46CE3E382341 /* Panel47UITests.swift */; };
+		C30CCB33D518EF273B247844 /* SecurityMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */; };
 		C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */; };
 		C53CD0D939E8C43B5EC74075 /* CalculatorEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43297C48087043501558CA1F /* CalculatorEngineTests.swift */; };
 		C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */; };
@@ -81,6 +85,7 @@
 		08F18BBF405E2F648AD47707 /* LCARSEngineeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSEngineeringView.swift; sourceTree = "<group>"; };
 		095F71D694006DCAD9120E21 /* LCARSStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStatusView.swift; sourceTree = "<group>"; };
 		0BD52B9308A0F290D4719D18 /* SystemMetricsSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsSampler.swift; sourceTree = "<group>"; };
+		0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityMetrics.swift; sourceTree = "<group>"; };
 		105BC816CE8C5A745879871D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMetricsTests.swift; sourceTree = "<group>"; };
 		1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSSoundPlayer.swift; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		354E795C80B4CF06638EEB7D /* LCARSCommandModulePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommandModulePanel.swift; sourceTree = "<group>"; };
 		3B85BE2D2151610DE5F48AC3 /* TerminalSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSession.swift; sourceTree = "<group>"; };
 		3F81671CB654360CDE88F96F /* BrewOutdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewOutdated.swift; sourceTree = "<group>"; };
+		4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityMetricsTests.swift; sourceTree = "<group>"; };
 		43297C48087043501558CA1F /* CalculatorEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorEngineTests.swift; sourceTree = "<group>"; };
 		5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsMetrics.swift; sourceTree = "<group>"; };
 		54707C9533AC8A1497E1EFCA /* CommsSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSampler.swift; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 		CF7A4E814232F39726D41E6E /* BrewOutdatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewOutdatedTests.swift; sourceTree = "<group>"; };
 		D3BC23C7F851C430951BEE2C /* LCARSCommandRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommandRunView.swift; sourceTree = "<group>"; };
 		D420214518FEFE5F1A02FCA5 /* ProcessMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMetrics.swift; sourceTree = "<group>"; };
+		D5E5021E983477AE1B195886 /* LCARSSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSSecurityView.swift; sourceTree = "<group>"; };
 		D8280183F82B774991830D87 /* Panel47Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSColor.swift; sourceTree = "<group>"; };
 		DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCalculatorView.swift; sourceTree = "<group>"; };
@@ -130,6 +137,7 @@
 		E81CE3C0B278FED55CAD18E8 /* SystemMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetrics.swift; sourceTree = "<group>"; };
 		E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsMetricsTests.swift; sourceTree = "<group>"; };
 		EDFE4D4395048B6D414DEE3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F2FFF6E71261781B751F7E09 /* SecuritySampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySampler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +188,7 @@
 				89980613A78EF284BEF34C32 /* LCARSFont.swift */,
 				879747F87A2BB3DDC7FB101C /* LCARSOutdatedSection.swift */,
 				A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */,
+				D5E5021E983477AE1B195886 /* LCARSSecurityView.swift */,
 				A758749BF8FCC1541D3329ED /* LCARSStardateView.swift */,
 				095F71D694006DCAD9120E21 /* LCARSStatusView.swift */,
 				98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */,
@@ -205,6 +214,8 @@
 				BE94A29C12FE117A8A63DA04 /* Panel47App.swift */,
 				D420214518FEFE5F1A02FCA5 /* ProcessMetrics.swift */,
 				93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */,
+				0EAB50798C590C2F5D3B0E59 /* SecurityMetrics.swift */,
+				F2FFF6E71261781B751F7E09 /* SecuritySampler.swift */,
 				97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */,
 				B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */,
 				E81CE3C0B278FED55CAD18E8 /* SystemMetrics.swift */,
@@ -234,6 +245,7 @@
 				E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */,
+				4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */,
 				18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */,
 				BF7DAEB56F89259B528C5D29 /* StardateTests.swift */,
 				6721D2CD95A57E9C1ACE6F2B /* SystemMetricsTests.swift */,
@@ -373,6 +385,7 @@
 				C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */,
+				C30CCB33D518EF273B247844 /* SecurityMetricsTests.swift in Sources */,
 				0DEADC4A5FA5939BB5B3D65D /* ShellCommandRunnerTests.swift in Sources */,
 				5190171854E308765937FBC4 /* StardateTests.swift in Sources */,
 				0DEB7DBC30EED7BFC76DD1F5 /* SystemMetricsTests.swift in Sources */,
@@ -404,6 +417,7 @@
 				FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */,
 				1CFEE4632A663022004B0190 /* LCARSOutdatedSection.swift in Sources */,
 				3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */,
+				6D13385F2F5102C566D7004C /* LCARSSecurityView.swift in Sources */,
 				D1B0636310F277D5A8FAEBD3 /* LCARSSoundPlayer.swift in Sources */,
 				7FDC8FD25A3A8D51573903E9 /* LCARSStardateView.swift in Sources */,
 				6E417C9F44612A52E46E2F87 /* LCARSStatusView.swift in Sources */,
@@ -412,6 +426,8 @@
 				75797E7FE86CF3F659D15922 /* Panel47App.swift in Sources */,
 				5FF718FD908C1BC90363014B /* ProcessMetrics.swift in Sources */,
 				AE7407EE031C5BBD9A6E3331 /* ProcessSampler.swift in Sources */,
+				B50266ADD510ACAA74A14C22 /* SecurityMetrics.swift in Sources */,
+				BC76E4EC75B6E3F5F07991D1 /* SecuritySampler.swift in Sources */,
 				AFBA57173D2FEEA81B138C75 /* SettingsView.swift in Sources */,
 				27A18229475F54A174EFC650 /* ShellCommandRunner.swift in Sources */,
 				C1941A9AAD64FE56A9DDCF0D /* Stardate.swift in Sources */,
