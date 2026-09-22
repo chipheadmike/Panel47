@@ -12,9 +12,11 @@ struct LCARSChrome: View {
     @State private var activeModule: CommandModule?
     @State private var runningAction: CommandAction?
     @State private var showingCalculator = false
+    @State private var showingStatus = false
     @State private var calculator = CalculatorEngine()
     @StateObject private var commandRunner = ShellCommandRunner()
     @StateObject private var brewOutdated = BrewOutdatedChecker()
+    @StateObject private var statusModel = SystemStatusModel()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -54,6 +56,8 @@ struct LCARSChrome: View {
     private var contentArea: some View {
         if showingCalculator {
             LCARSCalculatorView(engine: $calculator, onKeyPress: playBlip)
+        } else if showingStatus {
+            LCARSStatusView(model: statusModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -117,6 +121,7 @@ struct LCARSChrome: View {
                     playBlip()
                     runningAction = nil
                     showingCalculator = false
+                    showingStatus = false
                     activeModule = (activeModule?.id == module.id) ? nil : module
                 }
             }
@@ -125,7 +130,16 @@ struct LCARSChrome: View {
                 playBlip()
                 activeModule = nil
                 runningAction = nil
+                showingStatus = false
                 showingCalculator.toggle()
+            }
+
+            LCARSButton(title: "Status", color: showingStatus ? LCARSColor.paleCanary : LCARSColor.peach) {
+                playBlip()
+                activeModule = nil
+                runningAction = nil
+                showingCalculator = false
+                showingStatus.toggle()
             }
 
             sessionList
@@ -183,6 +197,8 @@ struct LCARSChrome: View {
     private var titleBarLabel: String {
         if showingCalculator {
             return "CALCULATOR"
+        } else if showingStatus {
+            return "STATUS"
         } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {
@@ -206,6 +222,7 @@ struct LCARSChrome: View {
         activeModule = nil
         runningAction = nil
         showingCalculator = false
+        showingStatus = false
     }
 
     private func playBlip() {
