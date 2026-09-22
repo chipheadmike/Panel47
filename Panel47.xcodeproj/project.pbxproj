@@ -14,6 +14,7 @@
 		0DEADC4A5FA5939BB5B3D65D /* ShellCommandRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */; };
 		0DEB7DBC30EED7BFC76DD1F5 /* SystemMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6721D2CD95A57E9C1ACE6F2B /* SystemMetricsTests.swift */; };
 		142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A4967AA40294DB773E23E /* LCARSButton.swift */; };
+		1570947141EFDC0700DD5145 /* LCARSCargoBayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F8D09FEC37C1BEDC6022E /* LCARSCargoBayView.swift */; };
 		1BBF1827E829E54D21074BD7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = C25482A6C6139E243606CA6E /* Fonts */; };
 		1C090984035B4E20110E05DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFE4D4395048B6D414DEE3A /* ContentView.swift */; };
 		1CFEE4632A663022004B0190 /* LCARSOutdatedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879747F87A2BB3DDC7FB101C /* LCARSOutdatedSection.swift */; };
@@ -24,6 +25,7 @@
 		319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A30160B328D0B86A058A5 /* Assets.xcassets */; };
 		36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54707C9533AC8A1497E1EFCA /* CommsSampler.swift */; };
 		390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */; };
+		3CA268B0B428BBE1B6973F07 /* CargoMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988BF638B8E5A054DD5F6861 /* CargoMetrics.swift */; };
 		3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */; };
 		48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */; };
 		5190171854E308765937FBC4 /* StardateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DAEB56F89259B528C5D29 /* StardateTests.swift */; };
@@ -34,6 +36,8 @@
 		61CBB3ABA6A21E47631B8917 /* CalculatorEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */; };
 		61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */; };
 		63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */; };
+		65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */; };
+		6C32F39B0758D2A86730F690 /* CargoScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D8DAD19CC408DFF2E6843 /* CargoScanner.swift */; };
 		6D13385F2F5102C566D7004C /* LCARSSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E5021E983477AE1B195886 /* LCARSSecurityView.swift */; };
 		6E417C9F44612A52E46E2F87 /* LCARSStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095F71D694006DCAD9120E21 /* LCARSStatusView.swift */; };
 		6FC1F7B0EEB8451F14A50268 /* LCARSEngineeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F18BBF405E2F648AD47707 /* LCARSEngineeringView.swift */; };
@@ -92,6 +96,7 @@
 		18AD9EE4AFFDCBA2CB2CF314 /* ShellCommandRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommandRunnerTests.swift; sourceTree = "<group>"; };
 		19F9201DE1131D9F55FBFA1A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		354E795C80B4CF06638EEB7D /* LCARSCommandModulePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommandModulePanel.swift; sourceTree = "<group>"; };
+		366F8D09FEC37C1BEDC6022E /* LCARSCargoBayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCargoBayView.swift; sourceTree = "<group>"; };
 		3B85BE2D2151610DE5F48AC3 /* TerminalSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSession.swift; sourceTree = "<group>"; };
 		3F81671CB654360CDE88F96F /* BrewOutdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewOutdated.swift; sourceTree = "<group>"; };
 		4324039BA6774CB1F29AC7EC /* SecurityMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityMetricsTests.swift; sourceTree = "<group>"; };
@@ -109,6 +114,8 @@
 		93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessSampler.swift; sourceTree = "<group>"; };
 		9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSVibrancyBackground.swift; sourceTree = "<group>"; };
 		97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommandRunner.swift; sourceTree = "<group>"; };
+		985D8DAD19CC408DFF2E6843 /* CargoScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoScanner.swift; sourceTree = "<group>"; };
+		988BF638B8E5A054DD5F6861 /* CargoMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoMetrics.swift; sourceTree = "<group>"; };
 		98954FD3369A07D3D178992E /* LCARSStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStyleGuide.swift; sourceTree = "<group>"; };
 		9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorEngine.swift; sourceTree = "<group>"; };
 		9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSElbow.swift; sourceTree = "<group>"; };
@@ -116,6 +123,7 @@
 		A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSReadout.swift; sourceTree = "<group>"; };
 		AFB0F907355EEBD31F221D85 /* TerminalSessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionStoreTests.swift; sourceTree = "<group>"; };
 		B0F5FE06E94B71DCA79ADB4B /* Stardate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stardate.swift; sourceTree = "<group>"; };
+		B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoMetricsTests.swift; sourceTree = "<group>"; };
 		BD27280187733034153C67B9 /* CommandModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandModule.swift; sourceTree = "<group>"; };
 		BE94A29C12FE117A8A63DA04 /* Panel47App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47App.swift; sourceTree = "<group>"; };
 		BF7DAEB56F89259B528C5D29 /* StardateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StardateTests.swift; sourceTree = "<group>"; };
@@ -178,6 +186,7 @@
 			children = (
 				8B0A4967AA40294DB773E23E /* LCARSButton.swift */,
 				DBE52E19B89610FDB29B222F /* LCARSCalculatorView.swift */,
+				366F8D09FEC37C1BEDC6022E /* LCARSCargoBayView.swift */,
 				70C1B6F33FBED3613F6E5D90 /* LCARSChrome.swift */,
 				DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */,
 				354E795C80B4CF06638EEB7D /* LCARSCommandModulePanel.swift */,
@@ -205,6 +214,8 @@
 				DE9A30160B328D0B86A058A5 /* Assets.xcassets */,
 				3F81671CB654360CDE88F96F /* BrewOutdated.swift */,
 				9DEF5C531D81BD7CDDE606F8 /* CalculatorEngine.swift */,
+				988BF638B8E5A054DD5F6861 /* CargoMetrics.swift */,
+				985D8DAD19CC408DFF2E6843 /* CargoScanner.swift */,
 				BD27280187733034153C67B9 /* CommandModule.swift */,
 				5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */,
 				54707C9533AC8A1497E1EFCA /* CommsSampler.swift */,
@@ -242,6 +253,7 @@
 				E0D185C559DAA6F40E8801D6 /* AppSettingsTests.swift */,
 				CF7A4E814232F39726D41E6E /* BrewOutdatedTests.swift */,
 				43297C48087043501558CA1F /* CalculatorEngineTests.swift */,
+				B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */,
 				E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */,
@@ -382,6 +394,7 @@
 				390D1CCD6E54B944EAE52DDB /* AppSettingsTests.swift in Sources */,
 				22B422FF28B3CC79786D1503 /* BrewOutdatedTests.swift in Sources */,
 				C53CD0D939E8C43B5EC74075 /* CalculatorEngineTests.swift in Sources */,
+				65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */,
 				C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
 				63286288954B07D3A279153E /* ProcessMetricsTests.swift in Sources */,
@@ -401,12 +414,15 @@
 				55681F16F98A790D33DD0A61 /* AppSettings.swift in Sources */,
 				C0C77F767DFB26A163BD7BBF /* BrewOutdated.swift in Sources */,
 				61CBB3ABA6A21E47631B8917 /* CalculatorEngine.swift in Sources */,
+				3CA268B0B428BBE1B6973F07 /* CargoMetrics.swift in Sources */,
+				6C32F39B0758D2A86730F690 /* CargoScanner.swift in Sources */,
 				2AF6237B5BDEC3A3CCD6108A /* CommandModule.swift in Sources */,
 				02D7C5A9AD4260F4F58FEA70 /* CommsMetrics.swift in Sources */,
 				36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */,
 				1C090984035B4E20110E05DF /* ContentView.swift in Sources */,
 				142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */,
 				61D283B9EDE86B5661C679BF /* LCARSCalculatorView.swift in Sources */,
+				1570947141EFDC0700DD5145 /* LCARSCargoBayView.swift in Sources */,
 				D90D046EC52E3CDBB0E17AD1 /* LCARSChrome.swift in Sources */,
 				C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */,
 				9DFDD5C3556CEA45A52A3DE4 /* LCARSCommandModulePanel.swift in Sources */,
