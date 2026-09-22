@@ -16,8 +16,6 @@ struct LCARSEngineeringView: View {
                     .font(LCARSFont.antonio(44, weight: 700))
                     .foregroundStyle(LCARSColor.textOnBlack)
 
-                controls
-
                 if let notice = model.notice {
                     Text(notice)
                         .font(LCARSFont.antonio(18, weight: 400))
@@ -54,32 +52,6 @@ struct LCARSEngineeringView: View {
         .onDisappear { model.stop() }
     }
 
-    private var controls: some View {
-        HStack(spacing: 8) {
-            Text("SORT BY")
-                .font(LCARSFont.antonio(12, weight: 700))
-                .tracking(1.5)
-                .foregroundStyle(LCARSColor.textOnBlack.opacity(0.7))
-                .padding(.trailing, 4)
-
-            sortButton("PROCESSOR", .cpu)
-            sortButton("MEMORY", .memory)
-        }
-    }
-
-    private func sortButton(_ title: String, _ value: ProcessSort) -> some View {
-        Button { playBlip(); model.setSort(value) } label: {
-            Text(title)
-                .font(LCARSFont.antonio(16, weight: 700))
-                .tracking(1)
-                .foregroundStyle(.black)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 5)
-        }
-        .buttonStyle(.plain)
-        .background(Capsule().fill(LCARSColor.gloss(model.sort == value ? LCARSColor.paleCanary : LCARSColor.periwinkle)))
-    }
-
     /// Bars are relative to the busiest row so differences stay visible. CPU
     /// never scales below one full core, so an idle list doesn't look busy.
     private func barScale(_ rows: [ProcessEntry]) -> Double {
@@ -95,6 +67,27 @@ struct LCARSEngineeringView: View {
         switch model.sort {
         case .cpu: return entry.cpuPercent.map { min(1, $0 / scale) }
         case .memory: return min(1, Double(entry.footprintBytes) / scale)
+        }
+    }
+}
+
+/// Sort-order controls shown in the sidebar in place of the main menu while
+/// Engineering has taken over the screen.
+struct EngineeringSidebarControls: View {
+    @ObservedObject var model: ProcessListModel
+    let playBlip: () -> Void
+
+    var body: some View {
+        Group {
+            sortButton("Processor", .cpu)
+            sortButton("Memory", .memory)
+        }
+    }
+
+    private func sortButton(_ title: String, _ value: ProcessSort) -> some View {
+        LCARSButton(title: title, color: model.sort == value ? LCARSColor.paleCanary : LCARSColor.peach) {
+            playBlip()
+            model.setSort(value)
         }
     }
 }

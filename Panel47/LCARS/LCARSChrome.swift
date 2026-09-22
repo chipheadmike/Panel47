@@ -157,45 +157,7 @@ struct LCARSChrome: View {
                 .fill(LCARSColor.gloss(LCARSColor.orange))
                 .frame(height: elbowHeight)
 
-            LCARSButton(title: "New Session", color: LCARSColor.orange) {
-                playBlip()
-                showTerminal()
-                store.newSession()
-            }
-            LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
-                playBlip()
-                showTerminal()
-                store.toggleSplit()
-            }
-            LCARSButton(title: "Settings", color: LCARSColor.lilac) {
-                playBlip()
-                showingSettings = true
-            }
-
-            ForEach(commandModules) { module in
-                LCARSButton(
-                    title: module.name,
-                    color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
-                ) {
-                    playBlip()
-                    runningAction = nil
-                    activePanel = nil
-                    activeModule = (activeModule?.id == module.id) ? nil : module
-                }
-            }
-
-            panelButton("Calc", .calculator)
-            panelButton("Status", .status)
-            panelButton("Engineering", .engineering)
-            panelButton("Comms", .comms)
-            panelButton("Security", .security)
-            panelButton("Cargo Bay", .cargoBay)
-            panelButton("Navigator", .navigator)
-            if isGitRepository {
-                panelButton("Tactical", .tactical)
-            }
-
-            sessionList
+            sidebarBody
 
             Spacer(minLength: 8)
 
@@ -209,6 +171,64 @@ struct LCARSChrome: View {
                 .fill(LCARSColor.gloss(LCARSColor.peach))
                 .frame(height: elbowHeight)
         }
+    }
+
+    /// The sidebar's main content: the full main menu normally, or — once a
+    /// panel has taken over the screen — that panel's own controls in its
+    /// place. Not every panel has been migrated to this yet; the rest still
+    /// fall back to the main menu for now.
+    @ViewBuilder
+    private var sidebarBody: some View {
+        if activePanel == .status {
+            StatusSidebarControls(playBlip: playBlip)
+        } else if activePanel == .engineering {
+            EngineeringSidebarControls(model: processModel, playBlip: playBlip)
+        } else {
+            mainMenu
+        }
+    }
+
+    @ViewBuilder
+    private var mainMenu: some View {
+        LCARSButton(title: "New Session", color: LCARSColor.orange) {
+            playBlip()
+            showTerminal()
+            store.newSession()
+        }
+        LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
+            playBlip()
+            showTerminal()
+            store.toggleSplit()
+        }
+        LCARSButton(title: "Settings", color: LCARSColor.lilac) {
+            playBlip()
+            showingSettings = true
+        }
+
+        ForEach(commandModules) { module in
+            LCARSButton(
+                title: module.name,
+                color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
+            ) {
+                playBlip()
+                runningAction = nil
+                activePanel = nil
+                activeModule = (activeModule?.id == module.id) ? nil : module
+            }
+        }
+
+        panelButton("Calc", .calculator)
+        panelButton("Status", .status)
+        panelButton("Engineering", .engineering)
+        panelButton("Comms", .comms)
+        panelButton("Security", .security)
+        panelButton("Cargo Bay", .cargoBay)
+        panelButton("Navigator", .navigator)
+        if isGitRepository {
+            panelButton("Tactical", .tactical)
+        }
+
+        sessionList
     }
 
     private func panelButton(_ title: String, _ panel: SidebarPanel) -> some View {
@@ -286,6 +306,24 @@ struct LCARSChrome: View {
             .overlay(alignment: .leading) {
                 LCARSReadout()
                     .padding(.leading, 20)
+            }
+            .overlay(alignment: .trailing) {
+                // Always present, regardless of what's taken over the
+                // screen — the one guaranteed way back to the main menu.
+                Button {
+                    playBlip()
+                    showTerminal()
+                } label: {
+                    Text("MAIN")
+                        .font(LCARSFont.antonio(16, weight: 700))
+                        .tracking(1)
+                        .foregroundStyle(.black)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                }
+                .buttonStyle(.plain)
+                .background(Capsule().fill(LCARSColor.gloss(LCARSColor.orange)))
+                .padding(.trailing, 12)
             }
     }
 

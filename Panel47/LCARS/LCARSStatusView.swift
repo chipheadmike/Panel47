@@ -156,6 +156,32 @@ struct LCARSStatusView: View {
     }
 }
 
+/// Static, non-interactive labels shown in the sidebar in place of the main
+/// menu while Status has taken over the screen. Status has no real actions
+/// to control, so this exists purely so its sidebar looks and feels the
+/// same as every other panel's — a real LCARS panel is full of buttons
+/// like this that exist for the console's own sake.
+struct StatusSidebarControls: View {
+    let playBlip: () -> Void
+
+    var body: some View {
+        Group {
+            sidebarLabel("Processor", LCARSColor.orange)
+            sidebarLabel("Memory", LCARSColor.periwinkle)
+            sidebarLabel("Storage", LCARSColor.lilac)
+            sidebarLabel("Power", LCARSColor.iceBlue)
+            sidebarLabel("Downlink", LCARSColor.peach)
+            sidebarLabel("Uplink", LCARSColor.paleCanary)
+        }
+    }
+
+    private func sidebarLabel(_ title: String, _ color: Color) -> some View {
+        LCARSButton(title: title, color: color) {
+            playBlip()
+        }
+    }
+}
+
 /// A label block, a segmented bar, and a value — the classic LCARS readout.
 private struct GaugeRow: View {
     let label: String
