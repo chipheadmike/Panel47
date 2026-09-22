@@ -5,6 +5,7 @@ import SwiftUI
 /// directory, so folders appear as `du` finds them rather than all at once.
 struct LCARSCargoBayView: View {
     @ObservedObject var model: CargoModel
+    let playBlip: () -> Void
 
     var body: some View {
         ScrollView {
@@ -80,14 +81,14 @@ struct LCARSCargoBayView: View {
                 CargoRowView(
                     entry: entry,
                     fraction: CargoMath.fraction(for: entry, scale: scale),
-                    onOpen: { model.open(entry) }
+                    onOpen: { playBlip(); model.open(entry) }
                 )
             }
         }
     }
 
     private func pill(_ title: String, _ color: Color, _ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+        Button(action: { playBlip(); action() }) {
             Text(title)
                 .font(LCARSFont.antonio(16, weight: 700))
                 .tracking(1)

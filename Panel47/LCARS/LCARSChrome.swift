@@ -106,17 +106,17 @@ struct LCARSChrome: View {
         } else if activePanel == .status {
             LCARSStatusView(model: statusModel)
         } else if activePanel == .engineering {
-            LCARSEngineeringView(model: processModel)
+            LCARSEngineeringView(model: processModel, playBlip: playBlip)
         } else if activePanel == .comms {
-            LCARSCommsView(model: commsModel)
+            LCARSCommsView(model: commsModel, playBlip: playBlip)
         } else if activePanel == .security {
             LCARSSecurityView(model: securityModel)
         } else if activePanel == .cargoBay {
-            LCARSCargoBayView(model: cargoModel)
+            LCARSCargoBayView(model: cargoModel, playBlip: playBlip)
         } else if activePanel == .tactical {
-            LCARSTacticalView(model: tacticalModel)
+            LCARSTacticalView(model: tacticalModel, playBlip: playBlip)
         } else if activePanel == .navigator {
-            LCARSNavigatorView(model: navigatorModel)
+            LCARSNavigatorView(model: navigatorModel, playBlip: playBlip)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil

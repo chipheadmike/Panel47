@@ -1,11 +1,13 @@
 import SwiftUI
 
 /// Browses a directory one level at a time — folders and files, sizes and
-/// modified dates, OPEN drills into a folder or launches a file with its
-/// default application. No rename, move or delete: this is a viewer, not a
-/// file manager, so there's nothing here that can lose work.
+/// modified dates. Tapping a row's DIR/FILE badge drills into a folder or
+/// launches a file with its default application — there's no separate OPEN
+/// button. No rename, move or delete: this is a viewer, not a file manager,
+/// so there's nothing here that can lose work.
 struct LCARSNavigatorView: View {
     @ObservedObject var model: FileBrowserModel
+    let playBlip: () -> Void
 
     var body: some View {
         ScrollView {
@@ -63,7 +65,7 @@ struct LCARSNavigatorView: View {
 
         VStack(alignment: .leading, spacing: 8) {
             ForEach(model.entries) { entry in
-                EntryRowView(entry: entry, onOpen: { model.open(entry) })
+                EntryRowView(entry: entry, onOpen: { playBlip(); model.open(entry) })
             }
         }
     }
@@ -76,7 +78,7 @@ struct LCARSNavigatorView: View {
     }
 
     private func pill(_ title: String, _ color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+        Button(action: { playBlip(); action() }) {
             Text(title)
                 .font(LCARSFont.antonio(16, weight: 700))
                 .tracking(1)
@@ -95,15 +97,18 @@ private struct EntryRowView: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 0, topTrailingRadius: 0)
-                .fill(LCARSColor.gloss(entry.isDirectory ? LCARSColor.periwinkle : LCARSColor.orange))
-                .frame(width: 90, height: 36)
-                .overlay {
-                    Text(entry.isDirectory ? "DIR" : "FILE")
-                        .font(LCARSFont.antonio(14, weight: 700))
-                        .tracking(0.5)
-                        .foregroundStyle(.black)
-                }
+            Button(action: onOpen) {
+                UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 0, topTrailingRadius: 0)
+                    .fill(LCARSColor.gloss(entry.isDirectory ? LCARSColor.periwinkle : LCARSColor.orange))
+                    .frame(width: 90, height: 36)
+                    .overlay {
+                        Text(entry.isDirectory ? "DIR" : "FILE")
+                            .font(LCARSFont.antonio(14, weight: 700))
+                            .tracking(0.5)
+                            .foregroundStyle(.black)
+                    }
+            }
+            .buttonStyle(.plain)
 
             Text(entry.name)
                 .font(.system(size: 16, design: .monospaced))
@@ -122,18 +127,6 @@ private struct EntryRowView: View {
                 .tracking(0.5)
                 .foregroundStyle(LCARSColor.textOnBlack.opacity(0.6))
                 .frame(width: 170, alignment: .trailing)
-
-            Button(action: onOpen) {
-                Text("OPEN")
-                    .font(LCARSFont.antonio(15, weight: 700))
-                    .tracking(1)
-                    .foregroundStyle(.black)
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 6)
-            }
-            .buttonStyle(.plain)
-            .background(Capsule().fill(LCARSColor.gloss(LCARSColor.iceBlue)))
-            .frame(width: 90, alignment: .trailing)
         }
     }
 }
