@@ -30,7 +30,7 @@ struct LCARSChrome: View {
     @State private var runningAction: CommandAction?
     @State private var activePanel: SidebarPanel?
     @State private var calculator = CalculatorEngine()
-    @StateObject private var commandRunner = ShellCommandRunner()
+    @StateObject private var commandRunner = PTYCommandRunner()
     @StateObject private var brewOutdated = BrewOutdatedChecker()
     @StateObject private var statusModel = SystemStatusModel()
     @StateObject private var processModel = ProcessListModel()

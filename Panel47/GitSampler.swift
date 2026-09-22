@@ -63,9 +63,10 @@ enum GitSampler {
 }
 
 /// Drives one repository's Tactical panel: the status board, and the three
-/// background actions (fetch, pull, stash). Actions reuse `ShellCommandRunner`
-/// — the same single-merged-pipe runner BREW's actions use — rather than
-/// adding another subprocess path.
+/// background actions (fetch, pull, stash). Actions reuse `PTYCommandRunner`
+/// — the same runner BREW's actions use, with a real pty so a command that
+/// needs a password (an SSH passphrase, say) can prompt for one instead of
+/// just failing — rather than adding another subprocess path.
 final class TacticalModel: ObservableObject {
     let directory: String
 
@@ -76,15 +77,16 @@ final class TacticalModel: ObservableObject {
     @Published private(set) var actionTitle: String?
     @Published private(set) var actionOutput: [String] = []
     @Published private(set) var isActionRunning = false
+    @Published private(set) var passwordPrompt: String?
 
     private let statusReader: (String, @escaping (GitRepoStatus?) -> Void) -> Void
-    private let runner: ShellCommandRunner
+    private let runner: PTYCommandRunner
     private var cancellables = Set<AnyCancellable>()
 
     init(
         directory: String,
         statusReader: @escaping (String, @escaping (GitRepoStatus?) -> Void) -> Void = GitSampler.readStatus,
-        runner: ShellCommandRunner = ShellCommandRunner()
+        runner: PTYCommandRunner = PTYCommandRunner()
     ) {
         self.directory = directory
         self.statusReader = statusReader
@@ -100,6 +102,15 @@ final class TacticalModel: ObservableObject {
                 self.refresh()
             }
             .store(in: &cancellables)
+
+        runner.$passwordPrompt
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$passwordPrompt)
+    }
+
+    /// Forwards to the underlying runner; see `PTYCommandRunner.submitPassword`.
+    func submitPassword(_ password: String) {
+        runner.submitPassword(password)
     }
 
     func start() {
