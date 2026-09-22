@@ -16,7 +16,7 @@ struct LCARSNavigatorView: View {
                     .font(LCARSFont.antonio(44, weight: 700))
                     .foregroundStyle(LCARSColor.textOnBlack)
 
-                controls
+                pathReadout
 
                 if let notice = model.notice {
                     Text(notice.uppercased())
@@ -37,22 +37,12 @@ struct LCARSNavigatorView: View {
         .onAppear { model.start() }
     }
 
-    private var controls: some View {
-        HStack(spacing: 8) {
-            if model.canGoUp {
-                pill("UP", LCARSColor.periwinkle) { model.goUp() }
-            }
-            Text(model.displayPath)
-                .font(LCARSFont.antonio(22, weight: 700))
-                .foregroundStyle(LCARSColor.textOnBlack)
-                .lineLimit(1)
-                .truncationMode(.head)
-            Spacer(minLength: 12)
-            pill("REVEAL IN FINDER", LCARSColor.iceBlue) { model.revealCurrentDirectoryInFinder() }
-            pill(model.isLoading ? "LOADING" : "REFRESH", model.isLoading ? LCARSColor.peach : LCARSColor.paleCanary) {
-                if !model.isLoading { model.refresh() }
-            }
-        }
+    private var pathReadout: some View {
+        Text(model.displayPath)
+            .font(LCARSFont.antonio(22, weight: 700))
+            .foregroundStyle(LCARSColor.textOnBlack)
+            .lineLimit(1)
+            .truncationMode(.head)
     }
 
     @ViewBuilder
@@ -77,17 +67,31 @@ struct LCARSNavigatorView: View {
             .foregroundStyle(LCARSColor.textOnBlack.opacity(0.7))
     }
 
-    private func pill(_ title: String, _ color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: { playBlip(); action() }) {
-            Text(title)
-                .font(LCARSFont.antonio(16, weight: 700))
-                .tracking(1)
-                .foregroundStyle(.black)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 6)
+}
+
+/// Navigation controls shown in the sidebar in place of the main menu while
+/// Navigator has taken over the screen.
+struct NavigatorSidebarControls: View {
+    @ObservedObject var model: FileBrowserModel
+    let playBlip: () -> Void
+
+    var body: some View {
+        Group {
+            if model.canGoUp {
+                sidebarButton("Up", LCARSColor.periwinkle) { model.goUp() }
+            }
+            sidebarButton("Reveal in Finder", LCARSColor.iceBlue) { model.revealCurrentDirectoryInFinder() }
+            sidebarButton(model.isLoading ? "Loading" : "Refresh", model.isLoading ? LCARSColor.peach : LCARSColor.paleCanary) {
+                if !model.isLoading { model.refresh() }
+            }
         }
-        .buttonStyle(.plain)
-        .background(Capsule().fill(LCARSColor.gloss(color)))
+    }
+
+    private func sidebarButton(_ title: String, _ color: Color, action: @escaping () -> Void) -> some View {
+        LCARSButton(title: title, color: color) {
+            playBlip()
+            action()
+        }
     }
 }
 

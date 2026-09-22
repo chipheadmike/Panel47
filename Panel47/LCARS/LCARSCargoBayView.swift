@@ -14,7 +14,7 @@ struct LCARSCargoBayView: View {
                     .font(LCARSFont.antonio(44, weight: 700))
                     .foregroundStyle(LCARSColor.textOnBlack)
 
-                controls
+                pathReadout
                 progress
                 rows
 
@@ -34,21 +34,12 @@ struct LCARSCargoBayView: View {
         .onDisappear { model.stop() }
     }
 
-    private var controls: some View {
-        HStack(spacing: 8) {
-            if model.canGoUp {
-                pill("UP", LCARSColor.periwinkle) { model.goUp() }
-            }
-            Text(model.displayPath)
-                .font(LCARSFont.antonio(22, weight: 700))
-                .foregroundStyle(LCARSColor.textOnBlack)
-                .lineLimit(1)
-                .truncationMode(.head)
-            Spacer(minLength: 12)
-            pill(model.isScanning ? "SCANNING" : "RESCAN", model.isScanning ? LCARSColor.peach : LCARSColor.paleCanary) {
-                if !model.isScanning { model.rescan() }
-            }
-        }
+    private var pathReadout: some View {
+        Text(model.displayPath)
+            .font(LCARSFont.antonio(22, weight: 700))
+            .foregroundStyle(LCARSColor.textOnBlack)
+            .lineLimit(1)
+            .truncationMode(.head)
     }
 
     @ViewBuilder
@@ -87,17 +78,30 @@ struct LCARSCargoBayView: View {
         }
     }
 
-    private func pill(_ title: String, _ color: Color, _ action: @escaping () -> Void) -> some View {
-        Button(action: { playBlip(); action() }) {
-            Text(title)
-                .font(LCARSFont.antonio(16, weight: 700))
-                .tracking(1)
-                .foregroundStyle(.black)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 6)
+}
+
+/// Navigation and rescan controls shown in the sidebar in place of the main
+/// menu while Cargo Bay has taken over the screen.
+struct CargoBaySidebarControls: View {
+    @ObservedObject var model: CargoModel
+    let playBlip: () -> Void
+
+    var body: some View {
+        Group {
+            if model.canGoUp {
+                sidebarButton("Up", LCARSColor.periwinkle) { model.goUp() }
+            }
+            sidebarButton(model.isScanning ? "Scanning" : "Rescan", model.isScanning ? LCARSColor.peach : LCARSColor.paleCanary) {
+                if !model.isScanning { model.rescan() }
+            }
         }
-        .buttonStyle(.plain)
-        .background(Capsule().fill(LCARSColor.gloss(color)))
+    }
+
+    private func sidebarButton(_ title: String, _ color: Color, action: @escaping () -> Void) -> some View {
+        LCARSButton(title: title, color: color) {
+            playBlip()
+            action()
+        }
     }
 }
 

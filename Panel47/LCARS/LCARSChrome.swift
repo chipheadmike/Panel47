@@ -183,6 +183,16 @@ struct LCARSChrome: View {
             EmptyView()
         } else if activePanel == .engineering {
             EngineeringSidebarControls(model: processModel, playBlip: playBlip)
+        } else if activePanel == .comms {
+            CommsSidebarControls(model: commsModel, playBlip: playBlip)
+        } else if activePanel == .security {
+            EmptyView()
+        } else if activePanel == .cargoBay {
+            CargoBaySidebarControls(model: cargoModel, playBlip: playBlip)
+        } else if activePanel == .tactical {
+            TacticalSidebarControls(model: tacticalModel, playBlip: playBlip)
+        } else if activePanel == .navigator {
+            NavigatorSidebarControls(model: navigatorModel, playBlip: playBlip)
         } else {
             mainMenu
         }
