@@ -30,8 +30,8 @@ enum TitleBarFormat {
 
 /// The real window chrome: a swept corner over a button sidebar on the left,
 /// thin title/status bars top and bottom, with the active session(s) — or a
-/// command module's actions, or a command's running output — filling the
-/// black frame in between.
+/// panel's data, or a command's running output — filling the black frame in
+/// between. Each panel's own controls live in the sidebar, not the content.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
     @ObservedObject var settings: AppSettings
@@ -168,10 +168,11 @@ struct LCARSChrome: View {
         }
     }
 
-    /// The sidebar's main content: the full main menu normally, or — once a
-    /// panel has taken over the screen — that panel's own controls in its
-    /// place. Not every panel has been migrated to this yet; the rest still
-    /// fall back to the main menu for now.
+    /// The sidebar's main content: the full main menu when nothing has taken
+    /// over the screen, or — once a panel or module has — that panel's own
+    /// controls in its place. A panel with no real controls of its own
+    /// (Calculator, Status, Security) gets an empty sidebar rather than
+    /// decorative filler.
     @ViewBuilder
     private var sidebarBody: some View {
         if activePanel == .calculator {
