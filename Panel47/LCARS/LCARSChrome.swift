@@ -180,7 +180,7 @@ struct LCARSChrome: View {
     @ViewBuilder
     private var sidebarBody: some View {
         if activePanel == .status {
-            StatusSidebarControls(playBlip: playBlip)
+            EmptyView()
         } else if activePanel == .engineering {
             EngineeringSidebarControls(model: processModel, playBlip: playBlip)
         } else {
