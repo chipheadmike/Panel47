@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The full-screen panels that swap into the viewscreen from the sidebar.
 enum SidebarPanel: Equatable {
-    case calculator, status, engineering, comms, security, cargoBay, tactical
+    case calculator, status, engineering, comms, security, cargoBay, tactical, navigator
 
     var titleBarLabel: String {
         switch self {
@@ -13,7 +13,18 @@ enum SidebarPanel: Equatable {
         case .security: return "SECURITY"
         case .cargoBay: return "CARGO BAY"
         case .tactical: return "TACTICAL"
+        case .navigator: return "NAVIGATOR"
         }
+    }
+}
+
+enum TitleBarFormat {
+    /// Keeps "PANEL 47 · <PANEL NAME> ·" always intact in the title bar —
+    /// only the path itself gets clipped (from the front, keeping the most
+    /// specific, currently-relevant end) once it's long enough to need it.
+    static func truncatedPathSuffix(_ path: String, keepingLast maxLength: Int = 40) -> String {
+        guard path.count > maxLength else { return path }
+        return "\u{2026}" + path.suffix(maxLength)
     }
 }
 
@@ -38,6 +49,7 @@ struct LCARSChrome: View {
     @StateObject private var securityModel = SecurityModel()
     @StateObject private var cargoModel = CargoModel()
     @StateObject private var tacticalModel: TacticalModel
+    @StateObject private var navigatorModel: FileBrowserModel
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -55,6 +67,7 @@ struct LCARSChrome: View {
         self._showingSettings = showingSettings
         let directory = settings.workingDirectory.isEmpty ? NSHomeDirectory() : settings.workingDirectory
         self._tacticalModel = StateObject(wrappedValue: TacticalModel(directory: directory))
+        self._navigatorModel = StateObject(wrappedValue: FileBrowserModel(rootPath: directory))
         self.isGitRepository = GitSampler.isRepository(directory: directory)
     }
 
@@ -93,15 +106,17 @@ struct LCARSChrome: View {
         } else if activePanel == .status {
             LCARSStatusView(model: statusModel)
         } else if activePanel == .engineering {
-            LCARSEngineeringView(model: processModel)
+            LCARSEngineeringView(model: processModel, playBlip: playBlip)
         } else if activePanel == .comms {
-            LCARSCommsView(model: commsModel)
+            LCARSCommsView(model: commsModel, playBlip: playBlip)
         } else if activePanel == .security {
             LCARSSecurityView(model: securityModel)
         } else if activePanel == .cargoBay {
-            LCARSCargoBayView(model: cargoModel)
+            LCARSCargoBayView(model: cargoModel, playBlip: playBlip)
         } else if activePanel == .tactical {
-            LCARSTacticalView(model: tacticalModel)
+            LCARSTacticalView(model: tacticalModel, playBlip: playBlip)
+        } else if activePanel == .navigator {
+            LCARSNavigatorView(model: navigatorModel, playBlip: playBlip)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -175,6 +190,7 @@ struct LCARSChrome: View {
             panelButton("Comms", .comms)
             panelButton("Security", .security)
             panelButton("Cargo Bay", .cargoBay)
+            panelButton("Navigator", .navigator)
             if isGitRepository {
                 panelButton("Tactical", .tactical)
             }
@@ -236,13 +252,24 @@ struct LCARSChrome: View {
                     .font(LCARSFont.antonio(18, weight: 700))
                     .tracking(1)
                     .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .truncationMode(.head)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing, 24)
+                    .padding(.leading, 24)
             }
     }
 
     private var titleBarLabel: String {
         if let panel = activePanel {
-            return panel.titleBarLabel
+            // These two drill into a directory, and the content area scrolls
+            // — showing the path here too keeps it visible even once the
+            // current folder's row has scrolled out of view.
+            switch panel {
+            case .navigator: return "NAVIGATOR \u{00B7} \(TitleBarFormat.truncatedPathSuffix(navigatorModel.displayPath).uppercased())"
+            case .cargoBay: return "CARGO BAY \u{00B7} \(TitleBarFormat.truncatedPathSuffix(cargoModel.displayPath).uppercased())"
+            default: return panel.titleBarLabel
+            }
         } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {

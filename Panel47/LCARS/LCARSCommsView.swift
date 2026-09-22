@@ -5,6 +5,7 @@ import SwiftUI
 /// Pings and scans only while shown.
 struct LCARSCommsView: View {
     @ObservedObject var model: CommsModel
+    let playBlip: () -> Void
 
     var body: some View {
         let stats = LatencyStats(samples: model.latencyHistory)
@@ -144,7 +145,7 @@ struct LCARSCommsView: View {
     }
 
     private func targetButton(_ target: PingTarget) -> some View {
-        Button { model.setTarget(target) } label: {
+        Button { playBlip(); model.setTarget(target) } label: {
             Text(target.title)
                 .font(LCARSFont.antonio(16, weight: 700))
                 .tracking(1)
@@ -180,9 +181,9 @@ struct LCARSCommsView: View {
                 PortRowView(
                     port: port,
                     isArmed: model.armedID == port.id,
-                    onArm: { model.arm(port.id) },
-                    onConfirm: { model.confirmTerminate(port.id) },
-                    onCancel: { model.cancel() }
+                    onArm: { playBlip(); model.arm(port.id) },
+                    onConfirm: { playBlip(); model.confirmTerminate(port.id) },
+                    onCancel: { playBlip(); model.cancel() }
                 )
             }
         }

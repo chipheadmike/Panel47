@@ -6,6 +6,7 @@ import SwiftUI
 /// same way BREW's actions do.
 struct LCARSTacticalView: View {
     @ObservedObject var model: TacticalModel
+    let playBlip: () -> Void
 
     @State private var passwordEntry = ""
 
@@ -151,6 +152,7 @@ struct LCARSTacticalView: View {
     }
 
     private func submitPassword() {
+        playBlip()
         model.submitPassword(passwordEntry)
         passwordEntry = ""
     }
@@ -176,7 +178,7 @@ struct LCARSTacticalView: View {
     }
 
     private func pill(_ title: String, _ color: Color, disabled: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+        Button(action: { playBlip(); action() }) {
             Text(title)
                 .font(LCARSFont.antonio(16, weight: 700))
                 .tracking(1)

@@ -23,6 +23,7 @@
 		22B422FF28B3CC79786D1503 /* BrewOutdatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A4E814232F39726D41E6E /* BrewOutdatedTests.swift */; };
 		27A18229475F54A174EFC650 /* ShellCommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */; };
 		2AF6237B5BDEC3A3CCD6108A /* CommandModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD27280187733034153C67B9 /* CommandModule.swift */; };
+		309822175CB76414A6109192 /* LCARSNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A52F9B26BE3E1B9C93A81 /* LCARSNavigatorView.swift */; };
 		319AF753CB7B5B304FAEB132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A30160B328D0B86A058A5 /* Assets.xcassets */; };
 		35AC02AD1AD4CE84EFF821F2 /* PTYCommandRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13024A0AB98538AAFB7DE81F /* PTYCommandRunnerTests.swift */; };
 		36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54707C9533AC8A1497E1EFCA /* CommsSampler.swift */; };
@@ -65,8 +66,11 @@
 		C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */; };
 		C53CD0D939E8C43B5EC74075 /* CalculatorEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43297C48087043501558CA1F /* CalculatorEngineTests.swift */; };
 		C59A561ADE7BF4FCCE64951E /* LCARSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB876DBCD4F46AC5538B2BF /* LCARSColor.swift */; };
+		CB33F98956F6E795F2DE7BB2 /* FileBrowserMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F4F39CFF3F286A6051DF5D /* FileBrowserMetrics.swift */; };
 		CC1043E6B546DCBBFFF8E3F0 /* TerminalSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85BE2D2151610DE5F48AC3 /* TerminalSession.swift */; };
 		D1B0636310F277D5A8FAEBD3 /* LCARSSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1537CD158FDB5CF0FAD4D403 /* LCARSSoundPlayer.swift */; };
+		D3761A6BB8DA2C9E042206BE /* FileBrowserMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64C70023E9E6A483660ED6 /* FileBrowserMetricsTests.swift */; };
+		D6EECBDA34FCB52996FC32CE /* FileBrowserSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01840DF7E7C9717A6200027A /* FileBrowserSampler.swift */; };
 		D90D046EC52E3CDBB0E17AD1 /* LCARSChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1B6F33FBED3613F6E5D90 /* LCARSChrome.swift */; };
 		F61B41E7552821F1BC0858DC /* LCARSCommsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0355FB7A7B3E11838195F9 /* LCARSCommsView.swift */; };
 		FAF948352DC1464FE0CF9E9E /* SystemMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CE3C0B278FED55CAD18E8 /* SystemMetrics.swift */; };
@@ -92,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		00BFB3BA3AC2243DEC0A43A4 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		01840DF7E7C9717A6200027A /* FileBrowserSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserSampler.swift; sourceTree = "<group>"; };
 		08F18BBF405E2F648AD47707 /* LCARSEngineeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSEngineeringView.swift; sourceTree = "<group>"; };
 		095F71D694006DCAD9120E21 /* LCARSStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSStatusView.swift; sourceTree = "<group>"; };
 		0BD52B9308A0F290D4719D18 /* SystemMetricsSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsSampler.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 		5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsMetrics.swift; sourceTree = "<group>"; };
 		54707C9533AC8A1497E1EFCA /* CommsSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSampler.swift; sourceTree = "<group>"; };
 		5D0355FB7A7B3E11838195F9 /* LCARSCommsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSCommsView.swift; sourceTree = "<group>"; };
+		628A52F9B26BE3E1B9C93A81 /* LCARSNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSNavigatorView.swift; sourceTree = "<group>"; };
 		6721D2CD95A57E9C1ACE6F2B /* SystemMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsTests.swift; sourceTree = "<group>"; };
 		6809E136A01F3EC6B97D467B /* Panel47UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panel47UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BD27F5E832A170F9BE0CA8 /* GitSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitSampler.swift; sourceTree = "<group>"; };
@@ -118,9 +124,11 @@
 		879747F87A2BB3DDC7FB101C /* LCARSOutdatedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSOutdatedSection.swift; sourceTree = "<group>"; };
 		89980613A78EF284BEF34C32 /* LCARSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSFont.swift; sourceTree = "<group>"; };
 		8B0A4967AA40294DB773E23E /* LCARSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSButton.swift; sourceTree = "<group>"; };
+		8D64C70023E9E6A483660ED6 /* FileBrowserMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserMetricsTests.swift; sourceTree = "<group>"; };
 		8D64DC718E03D58AC03904A6 /* LCARSTacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSTacticalView.swift; sourceTree = "<group>"; };
 		924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel47Tests.swift; sourceTree = "<group>"; };
 		93F1CDEF3BE8BAC79950EC10 /* ProcessSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessSampler.swift; sourceTree = "<group>"; };
+		93F4F39CFF3F286A6051DF5D /* FileBrowserMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserMetrics.swift; sourceTree = "<group>"; };
 		9537FA51096293C2C0293BC4 /* LCARSVibrancyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCARSVibrancyBackground.swift; sourceTree = "<group>"; };
 		97DB992E5C088A4B1963191A /* ShellCommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommandRunner.swift; sourceTree = "<group>"; };
 		985D8DAD19CC408DFF2E6843 /* CargoScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoScanner.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 				9FE7B6B22AF1CE1A26AADB6A /* LCARSElbow.swift */,
 				08F18BBF405E2F648AD47707 /* LCARSEngineeringView.swift */,
 				89980613A78EF284BEF34C32 /* LCARSFont.swift */,
+				628A52F9B26BE3E1B9C93A81 /* LCARSNavigatorView.swift */,
 				879747F87A2BB3DDC7FB101C /* LCARSOutdatedSection.swift */,
 				A9FC3CC1E7A37F3F3858B40A /* LCARSReadout.swift */,
 				D5E5021E983477AE1B195886 /* LCARSSecurityView.swift */,
@@ -233,6 +242,8 @@
 				5358CA51CB0E8BD165CE2E1A /* CommsMetrics.swift */,
 				54707C9533AC8A1497E1EFCA /* CommsSampler.swift */,
 				EDFE4D4395048B6D414DEE3A /* ContentView.swift */,
+				93F4F39CFF3F286A6051DF5D /* FileBrowserMetrics.swift */,
+				01840DF7E7C9717A6200027A /* FileBrowserSampler.swift */,
 				B0B381C4594E12F962DC5D9A /* GitMetrics.swift */,
 				68BD27F5E832A170F9BE0CA8 /* GitSampler.swift */,
 				105BC816CE8C5A745879871D /* Info.plist */,
@@ -271,6 +282,7 @@
 				43297C48087043501558CA1F /* CalculatorEngineTests.swift */,
 				B3835EC5C98F04A1AC481F66 /* CargoMetricsTests.swift */,
 				E91E836E0301F35720BA71BF /* CommsMetricsTests.swift */,
+				8D64C70023E9E6A483660ED6 /* FileBrowserMetricsTests.swift */,
 				EE5EB5846EEDE0F2500F963B /* GitMetricsTests.swift */,
 				924C5891EA01D3E2CEAA8E07 /* Panel47Tests.swift */,
 				12374E904B9FE1AD780DEDB1 /* ProcessMetricsTests.swift */,
@@ -414,6 +426,7 @@
 				C53CD0D939E8C43B5EC74075 /* CalculatorEngineTests.swift in Sources */,
 				65FB7CB35C39DBCE5446E6FC /* CargoMetricsTests.swift in Sources */,
 				C3B38E937589CF99D1891333 /* CommsMetricsTests.swift in Sources */,
+				D3761A6BB8DA2C9E042206BE /* FileBrowserMetricsTests.swift in Sources */,
 				0680579EC0917DAFC9356A94 /* GitMetricsTests.swift in Sources */,
 				35AC02AD1AD4CE84EFF821F2 /* PTYCommandRunnerTests.swift in Sources */,
 				0CDD8BB00FE8C914747DE99B /* Panel47Tests.swift in Sources */,
@@ -440,6 +453,8 @@
 				02D7C5A9AD4260F4F58FEA70 /* CommsMetrics.swift in Sources */,
 				36A04E3E29E5FCF4BAD87D82 /* CommsSampler.swift in Sources */,
 				1C090984035B4E20110E05DF /* ContentView.swift in Sources */,
+				CB33F98956F6E795F2DE7BB2 /* FileBrowserMetrics.swift in Sources */,
+				D6EECBDA34FCB52996FC32CE /* FileBrowserSampler.swift in Sources */,
 				3D205376DDC947C889BBEC9D /* GitMetrics.swift in Sources */,
 				AF546629E330ACC77D986875 /* GitSampler.swift in Sources */,
 				142AF689515C8C7BEA55D036 /* LCARSButton.swift in Sources */,
@@ -453,6 +468,7 @@
 				48B033C69F6A5D7663514C97 /* LCARSElbow.swift in Sources */,
 				6FC1F7B0EEB8451F14A50268 /* LCARSEngineeringView.swift in Sources */,
 				FD9BE16B8326982DD6FCF2EE /* LCARSFont.swift in Sources */,
+				309822175CB76414A6109192 /* LCARSNavigatorView.swift in Sources */,
 				1CFEE4632A663022004B0190 /* LCARSOutdatedSection.swift in Sources */,
 				3CE9244C2265982809DB5CBE /* LCARSReadout.swift in Sources */,
 				6D13385F2F5102C566D7004C /* LCARSSecurityView.swift in Sources */,

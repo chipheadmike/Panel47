@@ -4,6 +4,7 @@ import SwiftUI
 /// Refreshes only while shown.
 struct LCARSEngineeringView: View {
     @ObservedObject var model: ProcessListModel
+    let playBlip: () -> Void
 
     var body: some View {
         let rows = model.rows
@@ -31,9 +32,9 @@ struct LCARSEngineeringView: View {
                             sort: model.sort,
                             fraction: fraction(for: entry, scale: scale),
                             isArmed: model.armedPID == entry.pid,
-                            onArm: { model.arm(entry.pid) },
-                            onConfirm: { model.confirmTerminate(entry.pid) },
-                            onCancel: { model.cancel() }
+                            onArm: { playBlip(); model.arm(entry.pid) },
+                            onConfirm: { playBlip(); model.confirmTerminate(entry.pid) },
+                            onCancel: { playBlip(); model.cancel() }
                         )
                     }
                 }
@@ -67,7 +68,7 @@ struct LCARSEngineeringView: View {
     }
 
     private func sortButton(_ title: String, _ value: ProcessSort) -> some View {
-        Button { model.setSort(value) } label: {
+        Button { playBlip(); model.setSort(value) } label: {
             Text(title)
                 .font(LCARSFont.antonio(16, weight: 700))
                 .tracking(1)
