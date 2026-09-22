@@ -1,5 +1,19 @@
 import SwiftUI
 
+/// The full-screen panels that swap into the viewscreen from the sidebar.
+enum SidebarPanel: Equatable {
+    case calculator, status, engineering, comms
+
+    var titleBarLabel: String {
+        switch self {
+        case .calculator: return "CALCULATOR"
+        case .status: return "STATUS"
+        case .engineering: return "ENGINEERING"
+        case .comms: return "COMMS"
+        }
+    }
+}
+
 /// The real window chrome: a swept corner over a button sidebar on the left,
 /// thin title/status bars top and bottom, with the active session(s) — or a
 /// command module's actions, or a command's running output — filling the
@@ -11,14 +25,13 @@ struct LCARSChrome: View {
 
     @State private var activeModule: CommandModule?
     @State private var runningAction: CommandAction?
-    @State private var showingCalculator = false
-    @State private var showingStatus = false
-    @State private var showingEngineering = false
+    @State private var activePanel: SidebarPanel?
     @State private var calculator = CalculatorEngine()
     @StateObject private var commandRunner = ShellCommandRunner()
     @StateObject private var brewOutdated = BrewOutdatedChecker()
     @StateObject private var statusModel = SystemStatusModel()
     @StateObject private var processModel = ProcessListModel()
+    @StateObject private var commsModel = CommsModel()
 
     private let sidebarWidth: CGFloat = 180
     private let barHeight: CGFloat = 36
@@ -56,12 +69,14 @@ struct LCARSChrome: View {
 
     @ViewBuilder
     private var contentArea: some View {
-        if showingCalculator {
+        if activePanel == .calculator {
             LCARSCalculatorView(engine: $calculator, onKeyPress: playBlip)
-        } else if showingStatus {
+        } else if activePanel == .status {
             LCARSStatusView(model: statusModel)
-        } else if showingEngineering {
+        } else if activePanel == .engineering {
             LCARSEngineeringView(model: processModel)
+        } else if activePanel == .comms {
+            LCARSCommsView(model: commsModel)
         } else if let module = activeModule, let action = runningAction {
             LCARSCommandRunView(module: module, action: action, runner: commandRunner) {
                 runningAction = nil
@@ -124,39 +139,15 @@ struct LCARSChrome: View {
                 ) {
                     playBlip()
                     runningAction = nil
-                    showingCalculator = false
-                    showingStatus = false
-                    showingEngineering = false
+                    activePanel = nil
                     activeModule = (activeModule?.id == module.id) ? nil : module
                 }
             }
 
-            LCARSButton(title: "Calc", color: showingCalculator ? LCARSColor.paleCanary : LCARSColor.peach) {
-                playBlip()
-                activeModule = nil
-                runningAction = nil
-                showingStatus = false
-                showingEngineering = false
-                showingCalculator.toggle()
-            }
-
-            LCARSButton(title: "Status", color: showingStatus ? LCARSColor.paleCanary : LCARSColor.peach) {
-                playBlip()
-                activeModule = nil
-                runningAction = nil
-                showingCalculator = false
-                showingEngineering = false
-                showingStatus.toggle()
-            }
-
-            LCARSButton(title: "Engineering", color: showingEngineering ? LCARSColor.paleCanary : LCARSColor.peach) {
-                playBlip()
-                activeModule = nil
-                runningAction = nil
-                showingCalculator = false
-                showingStatus = false
-                showingEngineering.toggle()
-            }
+            panelButton("Calc", .calculator)
+            panelButton("Status", .status)
+            panelButton("Engineering", .engineering)
+            panelButton("Comms", .comms)
 
             sessionList
 
@@ -171,6 +162,15 @@ struct LCARSChrome: View {
             LCARSElbow(corner: .bottomLeft, armThickness: barHeight, outerRadius: 64)
                 .fill(LCARSColor.gloss(LCARSColor.peach))
                 .frame(height: elbowHeight)
+        }
+    }
+
+    private func panelButton(_ title: String, _ panel: SidebarPanel) -> some View {
+        LCARSButton(title: title, color: activePanel == panel ? LCARSColor.paleCanary : LCARSColor.peach) {
+            playBlip()
+            activeModule = nil
+            runningAction = nil
+            activePanel = (activePanel == panel) ? nil : panel
         }
     }
 
@@ -211,12 +211,8 @@ struct LCARSChrome: View {
     }
 
     private var titleBarLabel: String {
-        if showingCalculator {
-            return "CALCULATOR"
-        } else if showingStatus {
-            return "STATUS"
-        } else if showingEngineering {
-            return "ENGINEERING"
+        if let panel = activePanel {
+            return panel.titleBarLabel
         } else if let module = activeModule, let action = runningAction {
             return "\(module.name.uppercased()) \u{00B7} \(action.title.uppercased())"
         } else if let module = activeModule {
@@ -239,9 +235,7 @@ struct LCARSChrome: View {
     private func showTerminal() {
         activeModule = nil
         runningAction = nil
-        showingCalculator = false
-        showingStatus = false
-        showingEngineering = false
+        activePanel = nil
     }
 
     private func playBlip() {
