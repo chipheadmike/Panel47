@@ -127,11 +127,6 @@ struct LCARSChrome: View {
             LCARSCommandModulePanel(
                 module: module,
                 outdated: module.tracksOutdatedPackages ? brewOutdated : nil,
-                onSelect: { action in
-                    playBlip()
-                    runningAction = action
-                    commandRunner.run(action.command)
-                },
                 onUpgrade: { package in
                     playBlip()
                     let action = package.upgradeAction
@@ -179,7 +174,9 @@ struct LCARSChrome: View {
     /// fall back to the main menu for now.
     @ViewBuilder
     private var sidebarBody: some View {
-        if activePanel == .status {
+        if activePanel == .calculator {
+            EmptyView()
+        } else if activePanel == .status {
             EmptyView()
         } else if activePanel == .engineering {
             EngineeringSidebarControls(model: processModel, playBlip: playBlip)
@@ -193,6 +190,11 @@ struct LCARSChrome: View {
             TacticalSidebarControls(model: tacticalModel, playBlip: playBlip)
         } else if activePanel == .navigator {
             NavigatorSidebarControls(model: navigatorModel, playBlip: playBlip)
+        } else if let module = activeModule {
+            CommandModuleSidebarControls(module: module, playBlip: playBlip) { action in
+                runningAction = action
+                commandRunner.run(action.command)
+            }
         } else {
             mainMenu
         }
