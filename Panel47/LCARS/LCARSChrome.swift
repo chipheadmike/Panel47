@@ -30,8 +30,8 @@ enum TitleBarFormat {
 
 /// The real window chrome: a swept corner over a button sidebar on the left,
 /// thin title/status bars top and bottom, with the active session(s) — or a
-/// command module's actions, or a command's running output — filling the
-/// black frame in between.
+/// panel's data, or a command's running output — filling the black frame in
+/// between. Each panel's own controls live in the sidebar, not the content.
 struct LCARSChrome: View {
     @ObservedObject var store: TerminalSessionStore
     @ObservedObject var settings: AppSettings
@@ -127,11 +127,6 @@ struct LCARSChrome: View {
             LCARSCommandModulePanel(
                 module: module,
                 outdated: module.tracksOutdatedPackages ? brewOutdated : nil,
-                onSelect: { action in
-                    playBlip()
-                    runningAction = action
-                    commandRunner.run(action.command)
-                },
                 onUpgrade: { package in
                     playBlip()
                     let action = package.upgradeAction
@@ -157,45 +152,7 @@ struct LCARSChrome: View {
                 .fill(LCARSColor.gloss(LCARSColor.orange))
                 .frame(height: elbowHeight)
 
-            LCARSButton(title: "New Session", color: LCARSColor.orange) {
-                playBlip()
-                showTerminal()
-                store.newSession()
-            }
-            LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
-                playBlip()
-                showTerminal()
-                store.toggleSplit()
-            }
-            LCARSButton(title: "Settings", color: LCARSColor.lilac) {
-                playBlip()
-                showingSettings = true
-            }
-
-            ForEach(commandModules) { module in
-                LCARSButton(
-                    title: module.name,
-                    color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
-                ) {
-                    playBlip()
-                    runningAction = nil
-                    activePanel = nil
-                    activeModule = (activeModule?.id == module.id) ? nil : module
-                }
-            }
-
-            panelButton("Calc", .calculator)
-            panelButton("Status", .status)
-            panelButton("Engineering", .engineering)
-            panelButton("Comms", .comms)
-            panelButton("Security", .security)
-            panelButton("Cargo Bay", .cargoBay)
-            panelButton("Navigator", .navigator)
-            if isGitRepository {
-                panelButton("Tactical", .tactical)
-            }
-
-            sessionList
+            sidebarBody
 
             Spacer(minLength: 8)
 
@@ -209,6 +166,82 @@ struct LCARSChrome: View {
                 .fill(LCARSColor.gloss(LCARSColor.peach))
                 .frame(height: elbowHeight)
         }
+    }
+
+    /// The sidebar's main content: the full main menu when nothing has taken
+    /// over the screen, or — once a panel or module has — that panel's own
+    /// controls in its place. A panel with no real controls of its own
+    /// (Calculator, Status, Security) gets an empty sidebar rather than
+    /// decorative filler.
+    @ViewBuilder
+    private var sidebarBody: some View {
+        if activePanel == .calculator {
+            EmptyView()
+        } else if activePanel == .status {
+            EmptyView()
+        } else if activePanel == .engineering {
+            EngineeringSidebarControls(model: processModel, playBlip: playBlip)
+        } else if activePanel == .comms {
+            CommsSidebarControls(model: commsModel, playBlip: playBlip)
+        } else if activePanel == .security {
+            EmptyView()
+        } else if activePanel == .cargoBay {
+            CargoBaySidebarControls(model: cargoModel, playBlip: playBlip)
+        } else if activePanel == .tactical {
+            TacticalSidebarControls(model: tacticalModel, playBlip: playBlip)
+        } else if activePanel == .navigator {
+            NavigatorSidebarControls(model: navigatorModel, playBlip: playBlip)
+        } else if let module = activeModule {
+            CommandModuleSidebarControls(module: module, playBlip: playBlip) { action in
+                runningAction = action
+                commandRunner.run(action.command)
+            }
+        } else {
+            mainMenu
+        }
+    }
+
+    @ViewBuilder
+    private var mainMenu: some View {
+        LCARSButton(title: "New Session", color: LCARSColor.orange) {
+            playBlip()
+            showTerminal()
+            store.newSession()
+        }
+        LCARSButton(title: store.isSplit ? "Unsplit" : "Split Pane", color: LCARSColor.periwinkle) {
+            playBlip()
+            showTerminal()
+            store.toggleSplit()
+        }
+        LCARSButton(title: "Settings", color: LCARSColor.lilac) {
+            playBlip()
+            showingSettings = true
+        }
+
+        ForEach(commandModules) { module in
+            LCARSButton(
+                title: module.name,
+                color: activeModule?.id == module.id ? LCARSColor.paleCanary : LCARSColor.peach
+            ) {
+                playBlip()
+                runningAction = nil
+                activePanel = nil
+                activeModule = (activeModule?.id == module.id) ? nil : module
+            }
+        }
+
+        panelButton("Calc", .calculator)
+        panelButton("Status", .status)
+        panelButton("Engineering", .engineering)
+        panelButton("Comms", .comms)
+        panelButton("Security", .security)
+        panelButton("Cargo Bay", .cargoBay)
+        panelButton("Navigator", .navigator)
+        if isGitRepository {
+            panelButton("Tactical", .tactical)
+        }
+
+        sessionList
     }
 
     private func panelButton(_ title: String, _ panel: SidebarPanel) -> some View {
@@ -286,6 +319,24 @@ struct LCARSChrome: View {
             .overlay(alignment: .leading) {
                 LCARSReadout()
                     .padding(.leading, 20)
+            }
+            .overlay(alignment: .trailing) {
+                // Always present, regardless of what's taken over the
+                // screen — the one guaranteed way back to the main menu.
+                Button {
+                    playBlip()
+                    showTerminal()
+                } label: {
+                    Text("MAIN")
+                        .font(LCARSFont.antonio(16, weight: 700))
+                        .tracking(1)
+                        .foregroundStyle(.black)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                }
+                .buttonStyle(.plain)
+                .background(Capsule().fill(LCARSColor.gloss(LCARSColor.orange)))
+                .padding(.trailing, 12)
             }
     }
 
