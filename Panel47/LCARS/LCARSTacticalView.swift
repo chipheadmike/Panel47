@@ -28,8 +28,6 @@ struct LCARSTacticalView: View {
                     branchReadouts(status.branchStatus)
                 }
 
-                controls
-
                 if let notice = model.notice {
                     Text(notice)
                         .font(LCARSFont.antonio(18, weight: 400))
@@ -91,15 +89,6 @@ struct LCARSTacticalView: View {
             Text(value)
                 .font(LCARSFont.antonio(24, weight: 700))
                 .foregroundStyle(LCARSColor.textOnBlack)
-        }
-    }
-
-    private var controls: some View {
-        HStack(spacing: 8) {
-            pill("FETCH", LCARSColor.periwinkle, disabled: model.isActionRunning || model.isRefreshing) { model.fetch() }
-            pill("PULL", LCARSColor.iceBlue, disabled: model.isActionRunning || model.isRefreshing) { model.pull() }
-            pill("STASH", LCARSColor.peach, disabled: model.isActionRunning || model.isRefreshing) { model.stash() }
-            pill("REFRESH", LCARSColor.paleCanary, disabled: model.isActionRunning || model.isRefreshing) { model.refresh() }
         }
     }
 
@@ -177,19 +166,32 @@ struct LCARSTacticalView: View {
         }
     }
 
-    private func pill(_ title: String, _ color: Color, disabled: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: { playBlip(); action() }) {
-            Text(title)
-                .font(LCARSFont.antonio(16, weight: 700))
-                .tracking(1)
-                .foregroundStyle(.black)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 6)
+}
+
+/// Fetch/Pull/Stash/Refresh controls shown in the sidebar in place of the
+/// main menu while Tactical has taken over the screen.
+struct TacticalSidebarControls: View {
+    @ObservedObject var model: TacticalModel
+    let playBlip: () -> Void
+
+    private var busy: Bool { model.isActionRunning || model.isRefreshing }
+
+    var body: some View {
+        Group {
+            sidebarButton("Fetch", LCARSColor.periwinkle) { model.fetch() }
+            sidebarButton("Pull", LCARSColor.iceBlue) { model.pull() }
+            sidebarButton("Stash", LCARSColor.peach) { model.stash() }
+            sidebarButton("Refresh", LCARSColor.paleCanary) { model.refresh() }
         }
-        .buttonStyle(.plain)
-        .opacity(disabled ? 0.4 : 1)
-        .disabled(disabled)
-        .background(Capsule().fill(LCARSColor.gloss(color)))
+    }
+
+    private func sidebarButton(_ title: String, _ color: Color, action: @escaping () -> Void) -> some View {
+        LCARSButton(title: title, color: color) {
+            playBlip()
+            action()
+        }
+        .opacity(busy ? 0.4 : 1)
+        .disabled(busy)
     }
 }
 

@@ -76,13 +76,7 @@ struct LCARSCommsView: View {
         let color: Color = level == .critical ? LCARSColor.alertRed : (level == .warning ? LCARSColor.paleCanary : LCARSColor.periwinkle)
 
         return VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 8) {
-                caption("PING")
-                    .padding(.trailing, 4)
-                ForEach(PingTarget.allCases, id: \.self) { target in
-                    targetButton(target)
-                }
-            }
+            caption("PING \u{00B7} \(model.target.title)")
 
             HStack(spacing: 10) {
                 UnevenRoundedRectangle(topLeadingRadius: 22, bottomLeadingRadius: 22, bottomTrailingRadius: 0, topTrailingRadius: 0)
@@ -144,19 +138,6 @@ struct LCARSCommsView: View {
         .frame(height: 40, alignment: .bottom)
     }
 
-    private func targetButton(_ target: PingTarget) -> some View {
-        Button { playBlip(); model.setTarget(target) } label: {
-            Text(target.title)
-                .font(LCARSFont.antonio(16, weight: 700))
-                .tracking(1)
-                .foregroundStyle(.black)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 5)
-        }
-        .buttonStyle(.plain)
-        .background(Capsule().fill(LCARSColor.gloss(model.target == target ? LCARSColor.paleCanary : LCARSColor.periwinkle)))
-    }
-
     // MARK: - Ports
 
     private var portsSection: some View {
@@ -186,6 +167,28 @@ struct LCARSCommsView: View {
                     onCancel: { playBlip(); model.cancel() }
                 )
             }
+        }
+    }
+}
+
+/// Ping-target controls shown in the sidebar in place of the main menu while
+/// Comms has taken over the screen.
+struct CommsSidebarControls: View {
+    @ObservedObject var model: CommsModel
+    let playBlip: () -> Void
+
+    var body: some View {
+        Group {
+            ForEach(PingTarget.allCases, id: \.self) { target in
+                targetButton(target)
+            }
+        }
+    }
+
+    private func targetButton(_ target: PingTarget) -> some View {
+        LCARSButton(title: target.title, color: model.target == target ? LCARSColor.paleCanary : LCARSColor.periwinkle) {
+            playBlip()
+            model.setTarget(target)
         }
     }
 }

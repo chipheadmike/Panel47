@@ -86,7 +86,7 @@ struct LCARSCommandRunView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     ForEach(Array(runner.outputLines.enumerated()), id: \.offset) { index, line in
                         Text(line)
-                            .font(LCARSFont.antonio(16, weight: 400))
+                            .font(.system(size: 14, design: .monospaced))
                             .foregroundStyle(LCARSColor.textOnBlack)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .id(index)
