@@ -259,7 +259,8 @@ struct LCARSChrome: View {
                 ForEach(store.sessions) { session in
                     LCARSButton(
                         title: session.title,
-                        color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue
+                        color: session.id == store.primaryID ? LCARSColor.paleCanary : LCARSColor.iceBlue,
+                        pulses: session.id == store.primaryID
                     ) {
                         playBlip()
                         showTerminal()
